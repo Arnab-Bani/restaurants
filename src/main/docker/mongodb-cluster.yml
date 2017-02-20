@@ -1,0 +1,17 @@
+version: '2'
+services:
+    food-mongodb:
+        container_name: food-mongodb
+        image: mongo:3.2.10
+        ports:
+            - "27017:27017"
+        command: mongos --configdb food-mongodb-config
+    food-mongodb-node:
+        build:
+            context: .
+            dockerfile: mongodb/MongoDB.Dockerfile
+        command: mongod --replSet rs1 --noprealloc --smallfiles
+    food-mongodb-config:
+        image: mongo:3.2.10
+        container_name: food-mongodb-config
+        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
