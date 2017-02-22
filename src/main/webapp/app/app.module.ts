@@ -23,8 +23,6 @@ import {
     PageRibbonComponent,
     ErrorComponent
 } from './layouts';
-import { MenuComponent } from './menu/menu.component';
-
 
 @NgModule({
     imports: [
@@ -42,8 +40,7 @@ import { MenuComponent } from './menu/menu.component';
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        FooterComponent,
-        MenuComponent
+        FooterComponent
     ],
     providers: [
         ProfileService,
