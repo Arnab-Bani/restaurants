@@ -14,6 +14,8 @@ import { FoodEntityModule } from './entities/entity.module';
 import { LayoutRoutingModule } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { MenuComponent} from './menu/menu.component';
+import { LocationComponent} from './location/location.component';
 
 import {
     JhiMainComponent,
@@ -40,7 +42,9 @@ import {
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        FooterComponent
+        FooterComponent,
+        MenuComponent,
+        LocationComponent
     ],
     providers: [
         ProfileService,
