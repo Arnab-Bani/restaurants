@@ -1,7 +1,7 @@
 # ===================================================================
-# Spring Boot configuration.
+# Spring Boot configuration for the "dev" profile.
 #
-# This configuration is used for unit/integration tests.
+# This configuration overrides the application.yml file.
 #
 # More information on profiles: https://jhipster.github.io/profiles/
 # More information on configuration properties: https://jhipster.github.io/common-application-properties/
@@ -13,52 +13,52 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-
 spring:
-    application:
-        name: food
+    profiles:
+        active: dev
+        include: swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
     jackson:
-        serialization.write_dates_as_timestamps: false
+        serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:food;DB_CLOSE_DELAY=-1
-        name:
-        username:
-        password:
+        url: jdbc:mysql://localhost:3306/food?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: food
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
-        open-in-view: false
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         show-sql: true
-        hibernate:
-            ddl-auto: none
-            naming:
-                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         properties:
             hibernate.id.new_generator_mappings: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-            hibernate.hbm2ddl.auto: validate
     mail:
         host: localhost
-    mvc:
-        favicon:
-            enabled: false
+        port: 25
+        username:
+        password:
+    messages:
+        cache-seconds: 1
     thymeleaf:
-        mode: XHTML
+        cache: false
 
 liquibase:
-    contexts: test
-
-security:
-    basic:
-        enabled: false
+    contexts: dev
 
 server:
-    port: 10344
-    address: localhost
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties
@@ -67,16 +67,32 @@ server:
 # ===================================================================
 
 jhipster:
-    async:
-        core-pool-size: 2
-        max-pool-size: 50
-        queue-capacity: 10000
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
             key: 60ab08d7fc684a3ab4056e11d3f3603c14a7d2d1
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: food@localhost
+        base-url: http://127.0.0.1:8080
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
+        graphite: # Use the "graphite" Maven profile to have the Graphite dependencies
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: food
+        prometheus: # Use the "prometheus" Maven profile to have the Prometheus dependencies
+            enabled: false
+            endpoint: /prometheusMetrics
+        logs: # Reports Dropwizard metrics in the logs
+            enabled: false
+            reportFrequency: 60 # in seconds
+    logging:
+        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+            enabled: false
+            host: localhost
+            port: 5000
+            queue-size: 512
 
 # ===================================================================
 # Application specific properties
