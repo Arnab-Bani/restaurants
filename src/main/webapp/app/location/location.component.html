@@ -1,20 +1,24 @@
 <div>
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h2 >ADDRESS </h2>
+            <h2>ADDRESS </h2>
 
             <div>
-            24 Summerfield Blvd.<BR>
-            Dayton, NJ 08810<BR>
-            Tel: 732-274-8808
+                24 Summerfield Blvd.
+                <BR> Dayton, NJ 08810
+                <BR> Tel: 732-274-8808
             </div>
 
             <h2>Hours</h2>
             <div>
-                Monday – Saturday  10:00 AM – 10:00PM<BR>
-                Sunday    11:00 AM–9:00PM
+                Monday – Saturday 10:00 AM – 10:00PM
+                <BR> Sunday 11:00 AM–9:00PM
             </div>
-
+            <div id="map">
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+                </sebm-google-map>
+            </div>
             <jhi-alert-error></jhi-alert-error>
         </div>
     </div>
