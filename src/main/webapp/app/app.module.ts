@@ -16,6 +16,7 @@ import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { MenuComponent} from './menu/menu.component';
 import { LocationComponent} from './location/location.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import {
     JhiMainComponent,
@@ -35,7 +36,10 @@ import {
         FoodHomeModule,
         FoodAdminModule,
         FoodAccountModule,
-        FoodEntityModule
+        FoodEntityModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyDKzqm80CE0RTvIOkEM8YDyfx3mFTKtdoQ'
+        })
     ],
     declarations: [
         JhiMainComponent,
