@@ -1,0 +1,57 @@
+
+<div *ngIf="client">
+    <h2><span>Client</span> {{client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row">
+        <dt><span>Client Id</span></dt>
+        <dd>
+            <span>{{client.clientId}}</span>
+        </dd>
+        <dt><span>Client Name</span></dt>
+        <dd>
+            <span>{{client.clientName}}</span>
+        </dd>
+        <dt><span>Website</span></dt>
+        <dd>
+            <span>{{client.website}}</span>
+        </dd>
+        <dt><span>Address 1</span></dt>
+        <dd>
+            <span>{{client.address1}}</span>
+        </dd>
+        <dt><span>Address 2</span></dt>
+        <dd>
+            <span>{{client.address2}}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+            <span>{{client.city}}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+            <span>{{client.state}}</span>
+        </dd>
+        <dt><span>Zip</span></dt>
+        <dd>
+            <span>{{client.zip}}</span>
+        </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+            <span>{{client.country}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
