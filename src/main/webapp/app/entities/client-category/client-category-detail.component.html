@@ -1,0 +1,33 @@
+
+<div *ngIf="clientCategory">
+    <h2><span>Client Category</span> {{clientCategory.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row">
+        <dt><span>Client</span></dt>
+        <dd>
+            <div *ngIf="clientCategory.client">
+                <a [routerLink]="['client', clientCategory.client?.id]">{{clientCategory.client?.clientName}}</a>
+            </div>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="clientCategory.category">
+                <a [routerLink]="['category', clientCategory.category?.id]">{{clientCategory.category?.categoryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client-category/'+ clientCategory.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

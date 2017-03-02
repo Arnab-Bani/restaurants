@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "clientName"
+        },
+        {
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "categoryName"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170302162243",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "client_category",
+    "pagination": "pagination"
+}
