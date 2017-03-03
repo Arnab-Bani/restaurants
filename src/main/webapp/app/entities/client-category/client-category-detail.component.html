@@ -10,12 +10,6 @@
                 <a [routerLink]="['client', clientCategory.client?.id]">{{clientCategory.client?.clientName}}</a>
             </div>
         </dd>
-        <dt><span>Category</span></dt>
-        <dd>
-            <div *ngIf="clientCategory.category">
-                <a [routerLink]="['category', clientCategory.category?.id]">{{clientCategory.category?.categoryName}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

@@ -9,7 +9,6 @@ import { ClientCategory } from './client-category.model';
 import { ClientCategoryPopupService } from './client-category-popup.service';
 import { ClientCategoryService } from './client-category.service';
 import { Client, ClientService } from '../client';
-import { Category, CategoryService } from '../category';
 @Component({
     selector: 'jhi-client-category-dialog',
     templateUrl: './client-category-dialog.component.html'
@@ -21,14 +20,11 @@ export class ClientCategoryDialogComponent implements OnInit {
     isSaving: boolean;
 
     clients: Client[];
-
-    categories: Category[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private clientCategoryService: ClientCategoryService,
         private clientService: ClientService,
-        private categoryService: CategoryService,
         private eventManager: EventManager
     ) {
     }
@@ -38,8 +34,6 @@ export class ClientCategoryDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.clientService.query().subscribe(
             (res: Response) => { this.clients = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.categoryService.query().subscribe(
-            (res: Response) => { this.categories = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
@@ -72,10 +66,6 @@ export class ClientCategoryDialogComponent implements OnInit {
     }
 
     trackClientById(index: number, item: Client) {
-        return item.id;
-    }
-
-    trackCategoryById(index: number, item: Category) {
         return item.id;
     }
 }

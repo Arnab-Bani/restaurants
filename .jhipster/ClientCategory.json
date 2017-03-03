@@ -6,12 +6,6 @@
             "otherEntityName": "client",
             "relationshipType": "many-to-one",
             "otherEntityField": "clientName"
-        },
-        {
-            "relationshipName": "category",
-            "otherEntityName": "category",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "categoryName"
         }
     ],
     "fields": [],

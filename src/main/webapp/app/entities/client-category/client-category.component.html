@@ -19,7 +19,6 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="client.clientName"><span>Client</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="category.categoryName"><span>Category</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -29,11 +28,6 @@
                 <td>
                     <div *ngIf="clientCategory.client">
                         <a [routerLink]="['../client', clientCategory.client?.id ]" >{{clientCategory.client?.clientName}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="clientCategory.category">
-                        <a [routerLink]="['../category', clientCategory.category?.id ]" >{{clientCategory.category?.categoryName}}</a>
                     </div>
                 </td>
                 <td class="text-xs-right">

@@ -14,11 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="client"/>
 
-        <addForeignKeyConstraint baseColumnNames="category_id"
-                                 baseTableName="client_category"
-                                 constraintName="fk_client_category_category_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="category"/>
-
     </changeSet>
 </databaseChangeLog>

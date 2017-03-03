@@ -21,9 +21,6 @@ public class ClientCategory implements Serializable {
     @ManyToOne
     private Client client;
 
-    @ManyToOne
-    private Category category;
-
     public Long getId() {
         return id;
     }
@@ -43,19 +40,6 @@ public class ClientCategory implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public ClientCategory category(Category category) {
-        this.category = category;
-        return this;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     @Override
