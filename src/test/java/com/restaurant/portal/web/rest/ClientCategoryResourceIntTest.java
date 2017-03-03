@@ -38,6 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FoodApp.class)
 public class ClientCategoryResourceIntTest {
 
+    private static final String DEFAULT_CATEGORY_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_CATEGORY_NAME = "BBBBBBBBBB";
+
     @Autowired
     private ClientCategoryRepository clientCategoryRepository;
 
@@ -77,7 +80,8 @@ public class ClientCategoryResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static ClientCategory createEntity(EntityManager em) {
-        ClientCategory clientCategory = new ClientCategory();
+        ClientCategory clientCategory = new ClientCategory()
+                .categoryName(DEFAULT_CATEGORY_NAME);
         return clientCategory;
     }
 
@@ -102,6 +106,7 @@ public class ClientCategoryResourceIntTest {
         List<ClientCategory> clientCategoryList = clientCategoryRepository.findAll();
         assertThat(clientCategoryList).hasSize(databaseSizeBeforeCreate + 1);
         ClientCategory testClientCategory = clientCategoryList.get(clientCategoryList.size() - 1);
+        assertThat(testClientCategory.getCategoryName()).isEqualTo(DEFAULT_CATEGORY_NAME);
     }
 
     @Test
@@ -134,7 +139,8 @@ public class ClientCategoryResourceIntTest {
         restClientCategoryMockMvc.perform(get("/api/client-categories?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(clientCategory.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(clientCategory.getId().intValue())))
+            .andExpect(jsonPath("$.[*].categoryName").value(hasItem(DEFAULT_CATEGORY_NAME.toString())));
     }
 
     @Test
@@ -147,7 +153,8 @@ public class ClientCategoryResourceIntTest {
         restClientCategoryMockMvc.perform(get("/api/client-categories/{id}", clientCategory.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(clientCategory.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(clientCategory.getId().intValue()))
+            .andExpect(jsonPath("$.categoryName").value(DEFAULT_CATEGORY_NAME.toString()));
     }
 
     @Test
@@ -168,6 +175,8 @@ public class ClientCategoryResourceIntTest {
 
         // Update the clientCategory
         ClientCategory updatedClientCategory = clientCategoryRepository.findOne(clientCategory.getId());
+        updatedClientCategory
+                .categoryName(UPDATED_CATEGORY_NAME);
 
         restClientCategoryMockMvc.perform(put("/api/client-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -178,6 +187,7 @@ public class ClientCategoryResourceIntTest {
         List<ClientCategory> clientCategoryList = clientCategoryRepository.findAll();
         assertThat(clientCategoryList).hasSize(databaseSizeBeforeUpdate);
         ClientCategory testClientCategory = clientCategoryList.get(clientCategoryList.size() - 1);
+        assertThat(testClientCategory.getCategoryName()).isEqualTo(UPDATED_CATEGORY_NAME);
     }
 
     @Test

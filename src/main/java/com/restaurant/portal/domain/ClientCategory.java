@@ -18,6 +18,9 @@ public class ClientCategory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "category_name")
+    private String categoryName;
+
     @ManyToOne
     private Client client;
 
@@ -27,6 +30,19 @@ public class ClientCategory implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public ClientCategory categoryName(String categoryName) {
+        this.categoryName = categoryName;
+        return this;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Client getClient() {
@@ -66,6 +82,7 @@ public class ClientCategory implements Serializable {
     public String toString() {
         return "ClientCategory{" +
             "id=" + id +
+            ", categoryName='" + categoryName + "'" +
             '}';
     }
 }

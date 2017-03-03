@@ -8,7 +8,12 @@
             "otherEntityField": "clientName"
         }
     ],
-    "fields": [],
+    "fields": [
+        {
+            "fieldName": "categoryName",
+            "fieldType": "String"
+        }
+    ],
     "changelogDate": "20170302162243",
     "dto": "no",
     "service": "serviceImpl",

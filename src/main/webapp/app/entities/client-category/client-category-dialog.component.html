@@ -14,6 +14,12 @@
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="clientCategory.id" readonly />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_categoryName">Category Name</label>
+            <input type="text" class="form-control" name="categoryName" id="field_categoryName"
+                [(ngModel)]="clientCategory.categoryName"
+             />
+        </div>
 
         <div class="form-group">
             <label for="field_client">Client</label>
