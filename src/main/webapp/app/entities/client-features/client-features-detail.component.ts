@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Client_features } from './client-features.model';
-import { Client_featuresService } from './client-features.service';
+import { ClientFeatures } from './client-features.model';
+import { ClientFeaturesService } from './client-features.service';
 
 @Component({
     selector: 'jhi-client-features-detail',
     templateUrl: './client-features-detail.component.html'
 })
-export class Client_featuresDetailComponent implements OnInit, OnDestroy {
+export class ClientFeaturesDetailComponent implements OnInit, OnDestroy {
 
-    client_features: Client_features;
+    clientFeatures: ClientFeatures;
     private subscription: any;
 
     constructor(
-        private client_featuresService: Client_featuresService,
+        private clientFeaturesService: ClientFeaturesService,
         private route: ActivatedRoute
     ) {
     }
@@ -25,8 +25,8 @@ export class Client_featuresDetailComponent implements OnInit, OnDestroy {
     }
 
     load (id) {
-        this.client_featuresService.find(id).subscribe(client_features => {
-            this.client_features = client_features;
+        this.clientFeaturesService.find(id).subscribe(clientFeatures => {
+            this.clientFeatures = clientFeatures;
         });
     }
     previousState() {

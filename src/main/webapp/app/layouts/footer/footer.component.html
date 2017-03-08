@@ -1,7 +1,11 @@
-<div class="footer">
+<div class="footer" *ngIf="clientFeatures">
     <p>© Restaurant Business LLC</p>
-    <a href="https://www.facebook.com/Giuseppes-Restaurant-and-Pizzeria-203962172987106"><i class="fa fa-facebook-square"></i></a>
-    <a href="https://foursquare.com/v/giuseppes-pizzeria/4b7f2f71f964a520601d30e3"><i class="fa fa-foursquare"></i></a>
-    <a href="https://www.yelp.com/biz/giuseppes-brick-oven-pizzeria-and-restaurant-dayton"><i class="fa fa-yelp"></i></a>
+    <ul class="brand-icon">
+        <li class="brand-icon"><a href="https://www.facebook.com/{{clientFeatures.facebook}}"><i class="fa fa-facebook"></i></a></li>
+
+        <li class="brand-icon"><a href="https://foursquare.com/v/{{clientFeatures.foursquare}}"><i class="fa fa-foursquare"></i></a></li>
+
+        <li class="brand-icon"><a href="https://www.yelp.com/{{clientFeatures.yelp}}"><i class="fa fa-yelp"></i></a></li>
+    </ul>
 </div>
 <template ngbModalContainer></template>

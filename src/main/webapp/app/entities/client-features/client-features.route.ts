@@ -4,57 +4,57 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActiva
 import { UserRouteAccessService } from '../../shared';
 import { PaginationUtil } from 'ng-jhipster';
 
-import { Client_featuresComponent } from './client-features.component';
-import { Client_featuresDetailComponent } from './client-features-detail.component';
-import { Client_featuresPopupComponent } from './client-features-dialog.component';
-import { Client_featuresDeletePopupComponent } from './client-features-delete-dialog.component';
+import { ClientFeaturesComponent } from './client-features.component';
+import { ClientFeaturesDetailComponent } from './client-features-detail.component';
+import { ClientFeaturesPopupComponent } from './client-features-dialog.component';
+import { ClientFeaturesDeletePopupComponent } from './client-features-delete-dialog.component';
 
 import { Principal } from '../../shared';
 
 
-export const client_featuresRoute: Routes = [
+export const clientFeaturesRoute: Routes = [
   {
     path: 'client-features',
-    component: Client_featuresComponent,
+    component: ClientFeaturesComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_features'
+        pageTitle: 'ClientFeatures'
     }
   }, {
     path: 'client-features/:id',
-    component: Client_featuresDetailComponent,
+    component: ClientFeaturesDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_features'
+        pageTitle: 'ClientFeatures'
     }
   }
 ];
 
-export const client_featuresPopupRoute: Routes = [
+export const clientFeaturesPopupRoute: Routes = [
   {
     path: 'client-features-new',
-    component: Client_featuresPopupComponent,
+    component: ClientFeaturesPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_features'
+        pageTitle: 'ClientFeatures'
     },
     outlet: 'popup'
   },
   {
     path: 'client-features/:id/edit',
-    component: Client_featuresPopupComponent,
+    component: ClientFeaturesPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_features'
+        pageTitle: 'ClientFeatures'
     },
     outlet: 'popup'
   },
   {
     path: 'client-features/:id/delete',
-    component: Client_featuresDeletePopupComponent,
+    component: ClientFeaturesDeletePopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_features'
+        pageTitle: 'ClientFeatures'
     },
     outlet: 'popup'
   }

@@ -1,14 +1,13 @@
 package com.restaurant.portal.service;
 
-import com.restaurant.portal.domain.Client_features;
+import com.restaurant.portal.domain.ClientFeatures;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
 
 /**
- * Service Interface for managing Client_features.
+ * Service Interface for managing ClientFeatures.
  */
-public interface Client_featuresService {
+public interface ClientFeaturesService {
 
     /**
      * Save a client_features.
@@ -16,15 +15,15 @@ public interface Client_featuresService {
      * @param client_features the entity to save
      * @return the persisted entity
      */
-    Client_features save(Client_features client_features);
+    ClientFeatures save(ClientFeatures client_features);
 
     /**
      *  Get all the client_features.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Client_features> findAll(Pageable pageable);
+    Page<ClientFeatures> findAll(Pageable pageable);
 
     /**
      *  Get the "id" client_features.
@@ -32,7 +31,7 @@ public interface Client_featuresService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Client_features findOne(Long id);
+    ClientFeatures findOne(Long id);
 
     /**
      *  Delete the "id" client_features.

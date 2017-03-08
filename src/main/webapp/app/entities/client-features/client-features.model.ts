@@ -1,4 +1,4 @@
-export class Client_features {
+export class ClientFeatures {
     constructor(
         public id?: number,
         public client_id?: number,

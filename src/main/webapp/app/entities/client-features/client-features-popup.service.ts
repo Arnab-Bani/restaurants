@@ -1,15 +1,15 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Client_features } from './client-features.model';
-import { Client_featuresService } from './client-features.service';
+import { ClientFeatures } from './client-features.model';
+import { ClientFeaturesService } from './client-features.service';
 @Injectable()
-export class Client_featuresPopupService {
+export class ClientFeaturesPopupService {
     private isOpen = false;
     constructor (
         private modalService: NgbModal,
         private router: Router,
-        private client_featuresService: Client_featuresService
+        private clientFeaturesService: ClientFeaturesService
     ) {}
 
     open (component: Component, id?: number | any): NgbModalRef {
@@ -19,17 +19,17 @@ export class Client_featuresPopupService {
         this.isOpen = true;
 
         if (id) {
-            this.client_featuresService.find(id).subscribe(client_features => {
-                this.client_featuresModalRef(component, client_features);
+            this.clientFeaturesService.find(id).subscribe(clientFeatures => {
+                this.clientFeaturesModalRef(component, clientFeatures);
             });
         } else {
-            return this.client_featuresModalRef(component, new Client_features());
+            return this.clientFeaturesModalRef(component, new ClientFeatures());
         }
     }
 
-    client_featuresModalRef(component: Component, client_features: Client_features): NgbModalRef {
+    clientFeaturesModalRef(component: Component, clientFeatures: ClientFeatures): NgbModalRef {
         let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.client_features = client_features;
+        modalRef.componentInstance.clientFeatures = clientFeatures;
         modalRef.result.then(result => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;

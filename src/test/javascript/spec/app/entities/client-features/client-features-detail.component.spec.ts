@@ -7,20 +7,20 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { DateUtils, DataUtils } from 'ng-jhipster';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { Client_featuresDetailComponent } from '../../../../../../main/webapp/app/entities/client-features/client-features-detail.component';
-import { Client_featuresService } from '../../../../../../main/webapp/app/entities/client-features/client-features.service';
-import { Client_features } from '../../../../../../main/webapp/app/entities/client-features/client-features.model';
+import { ClientFeaturesDetailComponent } from '../../../../../../main/webapp/app/entities/client-features/client-features-detail.component';
+import { ClientFeaturesService } from '../../../../../../main/webapp/app/entities/client-features/client-features.service';
+import { ClientFeatures } from '../../../../../../main/webapp/app/entities/client-features/client-features.model';
 
 describe('Component Tests', () => {
 
-    describe('Client_features Management Detail Component', () => {
-        let comp: Client_featuresDetailComponent;
-        let fixture: ComponentFixture<Client_featuresDetailComponent>;
-        let service: Client_featuresService;
+    describe('ClientFeatures Management Detail Component', () => {
+        let comp: ClientFeaturesDetailComponent;
+        let fixture: ComponentFixture<ClientFeaturesDetailComponent>;
+        let service: ClientFeaturesService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                declarations: [Client_featuresDetailComponent],
+                declarations: [ClientFeaturesDetailComponent],
                 providers: [
                     MockBackend,
                     BaseRequestOptions,
@@ -38,9 +38,9 @@ describe('Component Tests', () => {
                         },
                         deps: [MockBackend, BaseRequestOptions]
                     },
-                    Client_featuresService
+                    ClientFeaturesService
                 ]
-            }).overrideComponent(Client_featuresDetailComponent, {
+            }).overrideComponent(ClientFeaturesDetailComponent, {
                 set: {
                     template: ''
                 }
@@ -48,23 +48,23 @@ describe('Component Tests', () => {
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(Client_featuresDetailComponent);
+            fixture = TestBed.createComponent(ClientFeaturesDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(Client_featuresService);
+            service = fixture.debugElement.injector.get(ClientFeaturesService);
         });
 
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
             // GIVEN
-            spyOn(service, 'find').and.returnValue(Observable.of(new Client_features(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new ClientFeatures(10)));
 
             // WHEN
             comp.ngOnInit();
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.client_features).toEqual(jasmine.objectContaining({id:10}));
+            expect(comp.clientFeatures).toEqual(jasmine.objectContaining({id:10}));
             });
         });
     });

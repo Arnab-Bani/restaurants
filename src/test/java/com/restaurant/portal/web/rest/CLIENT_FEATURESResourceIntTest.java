@@ -2,9 +2,9 @@ package com.restaurant.portal.web.rest;
 
 import com.restaurant.portal.FoodApp;
 
-import com.restaurant.portal.domain.Client_features;
-import com.restaurant.portal.repository.Client_featuresRepository;
-import com.restaurant.portal.service.Client_featuresService;
+import com.restaurant.portal.domain.ClientFeatures;
+import com.restaurant.portal.repository.ClientFeaturesRepository;
+import com.restaurant.portal.service.ClientFeaturesService;
 import com.restaurant.portal.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -51,10 +51,10 @@ public class Client_featuresResourceIntTest {
     private static final String UPDATED_FOURSQUARE = "BBBBBBBBBB";
 
     @Autowired
-    private Client_featuresRepository client_featuresRepository;
+    private ClientFeaturesRepository client_featuresRepository;
 
     @Autowired
-    private Client_featuresService client_featuresService;
+    private ClientFeaturesService client_featuresService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -70,7 +70,7 @@ public class Client_featuresResourceIntTest {
 
     private MockMvc restClient_featuresMockMvc;
 
-    private Client_features client_features;
+    private ClientFeatures client_features;
 
     @Before
     public void setup() {
@@ -88,8 +88,8 @@ public class Client_featuresResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Client_features createEntity(EntityManager em) {
-        Client_features client_features = new Client_features()
+    public static ClientFeatures createEntity(EntityManager em) {
+        ClientFeatures client_features = new ClientFeatures()
                 .client_id(DEFAULT_CLIENT_ID)
                 .facebook(DEFAULT_FACEBOOK)
                 .yelp(DEFAULT_YELP)
@@ -107,17 +107,17 @@ public class Client_featuresResourceIntTest {
     public void createClient_features() throws Exception {
         int databaseSizeBeforeCreate = client_featuresRepository.findAll().size();
 
-        // Create the Client_features
+        // Create the ClientFeatures
 
         restClient_featuresMockMvc.perform(post("/api/client-features")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(client_features)))
             .andExpect(status().isCreated());
 
-        // Validate the Client_features in the database
-        List<Client_features> client_featuresList = client_featuresRepository.findAll();
+        // Validate the ClientFeatures in the database
+        List<ClientFeatures> client_featuresList = client_featuresRepository.findAll();
         assertThat(client_featuresList).hasSize(databaseSizeBeforeCreate + 1);
-        Client_features testClient_features = client_featuresList.get(client_featuresList.size() - 1);
+        ClientFeatures testClient_features = client_featuresList.get(client_featuresList.size() - 1);
         assertThat(testClient_features.getClient_id()).isEqualTo(DEFAULT_CLIENT_ID);
         assertThat(testClient_features.getFacebook()).isEqualTo(DEFAULT_FACEBOOK);
         assertThat(testClient_features.getYelp()).isEqualTo(DEFAULT_YELP);
@@ -129,8 +129,8 @@ public class Client_featuresResourceIntTest {
     public void createClient_featuresWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = client_featuresRepository.findAll().size();
 
-        // Create the Client_features with an existing ID
-        Client_features existingClient_features = new Client_features();
+        // Create the ClientFeatures with an existing ID
+        ClientFeatures existingClient_features = new ClientFeatures();
         existingClient_features.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -140,7 +140,7 @@ public class Client_featuresResourceIntTest {
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
-        List<Client_features> client_featuresList = client_featuresRepository.findAll();
+        List<ClientFeatures> client_featuresList = client_featuresRepository.findAll();
         assertThat(client_featuresList).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -195,7 +195,7 @@ public class Client_featuresResourceIntTest {
         int databaseSizeBeforeUpdate = client_featuresRepository.findAll().size();
 
         // Update the client_features
-        Client_features updatedClient_features = client_featuresRepository.findOne(client_features.getId());
+        ClientFeatures updatedClient_features = client_featuresRepository.findOne(client_features.getId());
         updatedClient_features
                 .client_id(UPDATED_CLIENT_ID)
                 .facebook(UPDATED_FACEBOOK)
@@ -207,10 +207,10 @@ public class Client_featuresResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(updatedClient_features)))
             .andExpect(status().isOk());
 
-        // Validate the Client_features in the database
-        List<Client_features> client_featuresList = client_featuresRepository.findAll();
+        // Validate the ClientFeatures in the database
+        List<ClientFeatures> client_featuresList = client_featuresRepository.findAll();
         assertThat(client_featuresList).hasSize(databaseSizeBeforeUpdate);
-        Client_features testClient_features = client_featuresList.get(client_featuresList.size() - 1);
+        ClientFeatures testClient_features = client_featuresList.get(client_featuresList.size() - 1);
         assertThat(testClient_features.getClient_id()).isEqualTo(UPDATED_CLIENT_ID);
         assertThat(testClient_features.getFacebook()).isEqualTo(UPDATED_FACEBOOK);
         assertThat(testClient_features.getYelp()).isEqualTo(UPDATED_YELP);
@@ -222,7 +222,7 @@ public class Client_featuresResourceIntTest {
     public void updateNonExistingClient_features() throws Exception {
         int databaseSizeBeforeUpdate = client_featuresRepository.findAll().size();
 
-        // Create the Client_features
+        // Create the ClientFeatures
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restClient_featuresMockMvc.perform(put("/api/client-features")
@@ -230,8 +230,8 @@ public class Client_featuresResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(client_features)))
             .andExpect(status().isCreated());
 
-        // Validate the Client_features in the database
-        List<Client_features> client_featuresList = client_featuresRepository.findAll();
+        // Validate the ClientFeatures in the database
+        List<ClientFeatures> client_featuresList = client_featuresRepository.findAll();
         assertThat(client_featuresList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -249,12 +249,12 @@ public class Client_featuresResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Client_features> client_featuresList = client_featuresRepository.findAll();
+        List<ClientFeatures> client_featuresList = client_featuresRepository.findAll();
         assertThat(client_featuresList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Client_features.class);
+        TestUtil.equalsVerifier(ClientFeatures.class);
     }
 }

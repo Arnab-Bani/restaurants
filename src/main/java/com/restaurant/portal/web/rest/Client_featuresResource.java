@@ -1,8 +1,8 @@
 package com.restaurant.portal.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.restaurant.portal.domain.Client_features;
-import com.restaurant.portal.service.Client_featuresService;
+import com.restaurant.portal.domain.ClientFeatures;
+import com.restaurant.portal.service.ClientFeaturesService;
 import com.restaurant.portal.web.rest.util.HeaderUtil;
 import com.restaurant.portal.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing Client_features.
+ * REST controller for managing ClientFeatures.
  */
 @RestController
 @RequestMapping("/api")
@@ -31,10 +31,10 @@ public class Client_featuresResource {
     private final Logger log = LoggerFactory.getLogger(Client_featuresResource.class);
 
     private static final String ENTITY_NAME = "client_features";
-        
-    private final Client_featuresService client_featuresService;
 
-    public Client_featuresResource(Client_featuresService client_featuresService) {
+    private final ClientFeaturesService client_featuresService;
+
+    public Client_featuresResource(ClientFeaturesService client_featuresService) {
         this.client_featuresService = client_featuresService;
     }
 
@@ -47,12 +47,12 @@ public class Client_featuresResource {
      */
     @PostMapping("/client-features")
     @Timed
-    public ResponseEntity<Client_features> createClient_features(@RequestBody Client_features client_features) throws URISyntaxException {
-        log.debug("REST request to save Client_features : {}", client_features);
+    public ResponseEntity<ClientFeatures> createClient_features(@RequestBody ClientFeatures client_features) throws URISyntaxException {
+        log.debug("REST request to save ClientFeatures : {}", client_features);
         if (client_features.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new client_features cannot already have an ID")).body(null);
         }
-        Client_features result = client_featuresService.save(client_features);
+        ClientFeatures result = client_featuresService.save(client_features);
         return ResponseEntity.created(new URI("/api/client-features/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -69,12 +69,12 @@ public class Client_featuresResource {
      */
     @PutMapping("/client-features")
     @Timed
-    public ResponseEntity<Client_features> updateClient_features(@RequestBody Client_features client_features) throws URISyntaxException {
-        log.debug("REST request to update Client_features : {}", client_features);
+    public ResponseEntity<ClientFeatures> updateClient_features(@RequestBody ClientFeatures client_features) throws URISyntaxException {
+        log.debug("REST request to update ClientFeatures : {}", client_features);
         if (client_features.getId() == null) {
             return createClient_features(client_features);
         }
-        Client_features result = client_featuresService.save(client_features);
+        ClientFeatures result = client_featuresService.save(client_features);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, client_features.getId().toString()))
             .body(result);
@@ -89,10 +89,10 @@ public class Client_featuresResource {
      */
     @GetMapping("/client-features")
     @Timed
-    public ResponseEntity<List<Client_features>> getAllClient_features(@ApiParam Pageable pageable)
+    public ResponseEntity<List<ClientFeatures>> getAllClient_features(@ApiParam Pageable pageable)
         throws URISyntaxException {
-        log.debug("REST request to get a page of Client_features");
-        Page<Client_features> page = client_featuresService.findAll(pageable);
+        log.debug("REST request to get a page of ClientFeatures");
+        Page<ClientFeatures> page = client_featuresService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/client-features");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -105,9 +105,9 @@ public class Client_featuresResource {
      */
     @GetMapping("/client-features/{id}")
     @Timed
-    public ResponseEntity<Client_features> getClient_features(@PathVariable Long id) {
-        log.debug("REST request to get Client_features : {}", id);
-        Client_features client_features = client_featuresService.findOne(id);
+    public ResponseEntity<ClientFeatures> getClient_features(@PathVariable Long id) {
+        log.debug("REST request to get ClientFeatures : {}", id);
+        ClientFeatures client_features = client_featuresService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(client_features));
     }
 
@@ -120,7 +120,7 @@ public class Client_featuresResource {
     @DeleteMapping("/client-features/{id}")
     @Timed
     public ResponseEntity<Void> deleteClient_features(@PathVariable Long id) {
-        log.debug("REST request to delete Client_features : {}", id);
+        log.debug("REST request to delete ClientFeatures : {}", id);
         client_featuresService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }

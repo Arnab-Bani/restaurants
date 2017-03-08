@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Client_features } from './client-features.model';
+import { ClientFeatures } from './client-features.model';
 @Injectable()
-export class Client_featuresService {
+export class ClientFeaturesService {
 
     private resourceUrl = 'api/client-features';
 
     constructor(private http: Http) { }
 
-    create(client_features: Client_features): Observable<Client_features> {
-        let copy: Client_features = Object.assign({}, client_features);
+    create(clientFeatures: ClientFeatures): Observable<ClientFeatures> {
+        let copy: ClientFeatures = Object.assign({}, clientFeatures);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(client_features: Client_features): Observable<Client_features> {
-        let copy: Client_features = Object.assign({}, client_features);
+    update(clientFeatures: ClientFeatures): Observable<ClientFeatures> {
+        let copy: ClientFeatures = Object.assign({}, clientFeatures);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Client_features> {
+    find(id: number): Observable<ClientFeatures> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });

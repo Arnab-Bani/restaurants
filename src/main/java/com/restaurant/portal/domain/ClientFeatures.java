@@ -6,11 +6,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A Client_features.
+ * A ClientFeatures.
  */
 @Entity
 @Table(name = "client_features")
-public class Client_features implements Serializable {
+public class ClientFeatures implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,7 +42,7 @@ public class Client_features implements Serializable {
         return client_id;
     }
 
-    public Client_features client_id(Integer client_id) {
+    public ClientFeatures client_id(Integer client_id) {
         this.client_id = client_id;
         return this;
     }
@@ -55,7 +55,7 @@ public class Client_features implements Serializable {
         return facebook;
     }
 
-    public Client_features facebook(String facebook) {
+    public ClientFeatures facebook(String facebook) {
         this.facebook = facebook;
         return this;
     }
@@ -68,7 +68,7 @@ public class Client_features implements Serializable {
         return yelp;
     }
 
-    public Client_features yelp(String yelp) {
+    public ClientFeatures yelp(String yelp) {
         this.yelp = yelp;
         return this;
     }
@@ -81,7 +81,7 @@ public class Client_features implements Serializable {
         return foursquare;
     }
 
-    public Client_features foursquare(String foursquare) {
+    public ClientFeatures foursquare(String foursquare) {
         this.foursquare = foursquare;
         return this;
     }
@@ -98,7 +98,7 @@ public class Client_features implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Client_features client_features = (Client_features) o;
+        ClientFeatures client_features = (ClientFeatures) o;
         if (client_features.id == null || id == null) {
             return false;
         }
@@ -112,7 +112,7 @@ public class Client_features implements Serializable {
 
     @Override
     public String toString() {
-        return "Client_features{" +
+        return "ClientFeatures{" +
             "id=" + id +
             ", client_id='" + client_id + "'" +
             ", facebook='" + facebook + "'" +

@@ -13,7 +13,7 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="client_features">
+    <div class="table-responsive" *ngIf="clientFeatures">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
@@ -26,29 +26,29 @@
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let client_features of client_features ;trackBy: trackId">
-                <td><a [routerLink]="['../client-features', client_features.id ]">{{client_features.id}}</a></td>
-                <td>{{client_features.client_id}}</td>
-                <td>{{client_features.facebook}}</td>
-                <td>{{client_features.yelp}}</td>
-                <td>{{client_features.foursquare}}</td>
+            <tr *ngFor="let clientFeatures of clientFeatures ;trackBy: trackId">
+                <td><a [routerLink]="['../client-features', clientFeatures.id ]">{{clientFeatures.id}}</a></td>
+                <td>{{clientFeatures.client_id}}</td>
+                <td>{{clientFeatures.facebook}}</td>
+                <td>{{clientFeatures.yelp}}</td>
+                <td>{{clientFeatures.foursquare}}</td>
                 <td class="text-xs-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../client-features', client_features.id ]"
+                                [routerLink]="['../client-features', clientFeatures.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'client-features/'+ client_features.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'client-features/'+ clientFeatures.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'client-features/'+ client_features.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'client-features/'+ clientFeatures.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>

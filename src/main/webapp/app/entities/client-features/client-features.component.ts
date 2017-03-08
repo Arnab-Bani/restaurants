@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { EventManager, ParseLinks, PaginationUtil, AlertService } from 'ng-jhipster';
 
-import { Client_features } from './client-features.model';
-import { Client_featuresService } from './client-features.service';
+import { ClientFeatures } from './client-features.model';
+import { ClientFeaturesService } from './client-features.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
@@ -13,9 +13,10 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     selector: 'jhi-client-features',
     templateUrl: './client-features.component.html'
 })
-export class Client_featuresComponent implements OnInit, OnDestroy {
 
-    client_features: Client_features[];
+export class ClientFeaturesComponent implements OnInit, OnDestroy {
+
+    clientFeatures: ClientFeatures[];
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -27,13 +28,13 @@ export class Client_featuresComponent implements OnInit, OnDestroy {
     totalItems: number;
 
     constructor(
-        private client_featuresService: Client_featuresService,
+        private clientFeaturesService: ClientFeaturesService,
         private alertService: AlertService,
         private eventManager: EventManager,
         private parseLinks: ParseLinks,
         private principal: Principal
     ) {
-        this.client_features = [];
+        this.clientFeatures = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
         this.links = {
@@ -44,7 +45,7 @@ export class Client_featuresComponent implements OnInit, OnDestroy {
     }
 
     loadAll () {
-        this.client_featuresService.query({
+        this.clientFeaturesService.query({
             page: this.page,
             size: this.itemsPerPage,
             sort: this.sort()
@@ -56,7 +57,7 @@ export class Client_featuresComponent implements OnInit, OnDestroy {
 
     reset () {
         this.page = 0;
-        this.client_features = [];
+        this.clientFeatures = [];
         this.loadAll();
     }
 
@@ -69,21 +70,19 @@ export class Client_featuresComponent implements OnInit, OnDestroy {
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInClient_features();
+        this.registerChangeInClientFeatures();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Client_features) {
+    trackId (index: number, item: ClientFeatures) {
         return item.id;
     }
 
-
-
-    registerChangeInClient_features() {
-        this.eventSubscriber = this.eventManager.subscribe('client_featuresListModification', (response) => this.reset());
+    registerChangeInClientFeatures() {
+        this.eventSubscriber = this.eventManager.subscribe('clientFeaturesListModification', (response) => this.reset());
     }
 
     sort () {
@@ -98,7 +97,7 @@ export class Client_featuresComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
-            this.client_features.push(data[i]);
+            this.clientFeatures.push(data[i]);
         }
     }
 

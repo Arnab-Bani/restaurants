@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from 'ng-jhipster';
 
-import { Client_features } from './client-features.model';
-import { Client_featuresPopupService } from './client-features-popup.service';
-import { Client_featuresService } from './client-features.service';
+import { ClientFeatures } from './client-features.model';
+import { ClientFeaturesPopupService } from './client-features-popup.service';
+import { ClientFeaturesService } from './client-features.service';
 
 @Component({
     selector: 'jhi-client-features-delete-dialog',
     templateUrl: './client-features-delete-dialog.component.html'
 })
-export class Client_featuresDeleteDialogComponent {
+export class ClientFeaturesDeleteDialogComponent {
 
-    client_features: Client_features;
+    clientFeatures: ClientFeatures;
 
     constructor(
-        private client_featuresService: Client_featuresService,
+        private clientFeaturesService: ClientFeaturesService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
@@ -28,10 +28,10 @@ export class Client_featuresDeleteDialogComponent {
     }
 
     confirmDelete (id: number) {
-        this.client_featuresService.delete(id).subscribe(response => {
+        this.clientFeaturesService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
-                name: 'client_featuresListModification',
-                content: 'Deleted an client_features'
+                name: 'clientFeaturesListModification',
+                content: 'Deleted an clientFeatures'
             });
             this.activeModal.dismiss(true);
         });
@@ -42,20 +42,20 @@ export class Client_featuresDeleteDialogComponent {
     selector: 'jhi-client-features-delete-popup',
     template: ''
 })
-export class Client_featuresDeletePopupComponent implements OnInit, OnDestroy {
+export class ClientFeaturesDeletePopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor (
         private route: ActivatedRoute,
-        private client_featuresPopupService: Client_featuresPopupService
+        private clientFeaturesPopupService: ClientFeaturesPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            this.modalRef = this.client_featuresPopupService
-                .open(Client_featuresDeleteDialogComponent, params['id']);
+            this.modalRef = this.clientFeaturesPopupService
+                .open(ClientFeaturesDeleteDialogComponent, params['id']);
         });
     }
 

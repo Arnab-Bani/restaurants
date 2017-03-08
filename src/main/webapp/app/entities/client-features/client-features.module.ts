@@ -4,21 +4,21 @@ import { RouterModule } from '@angular/router';
 import { FoodSharedModule } from '../../shared';
 
 import {
-    Client_featuresService,
-    Client_featuresPopupService,
-    Client_featuresComponent,
-    Client_featuresDetailComponent,
-    Client_featuresDialogComponent,
-    Client_featuresPopupComponent,
-    Client_featuresDeletePopupComponent,
-    Client_featuresDeleteDialogComponent,
-    client_featuresRoute,
-    client_featuresPopupRoute,
+    ClientFeaturesService,
+    ClientFeaturesPopupService,
+    ClientFeaturesComponent,
+    ClientFeaturesDetailComponent,
+    ClientFeaturesDialogComponent,
+    ClientFeaturesPopupComponent,
+    ClientFeaturesDeletePopupComponent,
+    ClientFeaturesDeleteDialogComponent,
+    clientFeaturesRoute,
+    clientFeaturesPopupRoute,
 } from './';
 
 let ENTITY_STATES = [
-    ...client_featuresRoute,
-    ...client_featuresPopupRoute,
+    ...clientFeaturesRoute,
+    ...clientFeaturesPopupRoute,
 ];
 
 @NgModule({
@@ -27,24 +27,24 @@ let ENTITY_STATES = [
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
-        Client_featuresComponent,
-        Client_featuresDetailComponent,
-        Client_featuresDialogComponent,
-        Client_featuresDeleteDialogComponent,
-        Client_featuresPopupComponent,
-        Client_featuresDeletePopupComponent,
+        ClientFeaturesComponent,
+        ClientFeaturesDetailComponent,
+        ClientFeaturesDialogComponent,
+        ClientFeaturesDeleteDialogComponent,
+        ClientFeaturesPopupComponent,
+        ClientFeaturesDeletePopupComponent,
     ],
     entryComponents: [
-        Client_featuresComponent,
-        Client_featuresDialogComponent,
-        Client_featuresPopupComponent,
-        Client_featuresDeleteDialogComponent,
-        Client_featuresDeletePopupComponent,
+        ClientFeaturesComponent,
+        ClientFeaturesDialogComponent,
+        ClientFeaturesPopupComponent,
+        ClientFeaturesDeleteDialogComponent,
+        ClientFeaturesDeletePopupComponent,
     ],
     providers: [
-        Client_featuresService,
-        Client_featuresPopupService,
+        ClientFeaturesService,
+        ClientFeaturesPopupService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FoodClient_featuresModule {}
+export class FoodClientFeaturesModule {}
