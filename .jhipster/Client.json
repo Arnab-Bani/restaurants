@@ -37,6 +37,14 @@
         {
             "fieldName": "country",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170301161834",

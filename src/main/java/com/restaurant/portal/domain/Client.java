@@ -45,6 +45,12 @@ public class Client implements Serializable {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "active")
+    private String active;
+
     public Long getId() {
         return id;
     }
@@ -170,6 +176,32 @@ public class Client implements Serializable {
         this.country = country;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public Client phone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public Client active(String active) {
+        this.active = active;
+        return this;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -203,6 +235,8 @@ public class Client implements Serializable {
             ", state='" + state + "'" +
             ", zip='" + zip + "'" +
             ", country='" + country + "'" +
+            ", phone='" + phone + "'" +
+            ", active='" + active + "'" +
             '}';
     }
 }

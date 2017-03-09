@@ -197,11 +197,8 @@ ui bootstrap tweaks
     outline: none;
 }
 
-ul {
-	overflow: auto;
-}
-
 ul.brand-icon {
+    overflow: auto;
 	list-style-type: none;
 	float: left;
 }

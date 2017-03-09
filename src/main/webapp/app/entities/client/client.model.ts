@@ -10,5 +10,7 @@ export class Client {
         public state?: string,
         public zip?: string,
         public country?: string,
+        public phone?: string,
+        public active?: string,
     ) { }
 }

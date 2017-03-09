@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "client_id",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "facebook",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "yelp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "foursquare",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170304154816",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "client_features",
+    "pagination": "infinite-scroll"
+}
