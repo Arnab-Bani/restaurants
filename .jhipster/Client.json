@@ -45,6 +45,14 @@
         {
             "fieldName": "active",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Float"
         }
     ],
     "changelogDate": "20170301161834",

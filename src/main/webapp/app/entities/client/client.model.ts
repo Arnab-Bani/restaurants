@@ -12,5 +12,7 @@ export class Client {
         public country?: string,
         public phone?: string,
         public active?: string,
+        public longitude?: number,
+        public latitude?: number,
     ) { }
 }

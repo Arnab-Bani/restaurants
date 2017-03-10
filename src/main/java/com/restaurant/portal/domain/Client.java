@@ -51,6 +51,12 @@ public class Client implements Serializable {
     @Column(name = "active")
     private String active;
 
+    @Column(name = "longitude")
+    private Float longitude;
+
+    @Column(name = "latitude")
+    private Float latitude;
+
     public Long getId() {
         return id;
     }
@@ -202,6 +208,32 @@ public class Client implements Serializable {
         this.active = active;
     }
 
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public Client longitude(Float longitude) {
+        this.longitude = longitude;
+        return this;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public Client latitude(Float latitude) {
+        this.latitude = latitude;
+        return this;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -237,6 +269,8 @@ public class Client implements Serializable {
             ", country='" + country + "'" +
             ", phone='" + phone + "'" +
             ", active='" + active + "'" +
+            ", longitude='" + longitude + "'" +
+            ", latitude='" + latitude + "'" +
             '}';
     }
 }

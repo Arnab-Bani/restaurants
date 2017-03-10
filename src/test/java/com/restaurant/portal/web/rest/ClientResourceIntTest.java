@@ -71,6 +71,12 @@ public class ClientResourceIntTest {
     private static final String DEFAULT_ACTIVE = "AAAAAAAAAA";
     private static final String UPDATED_ACTIVE = "BBBBBBBBBB";
 
+    private static final Float DEFAULT_LONGITUDE = 1F;
+    private static final Float UPDATED_LONGITUDE = 2F;
+
+    private static final Float DEFAULT_LATITUDE = 1F;
+    private static final Float UPDATED_LATITUDE = 2F;
+
     @Autowired
     private ClientRepository clientRepository;
 
@@ -121,7 +127,9 @@ public class ClientResourceIntTest {
                 .zip(DEFAULT_ZIP)
                 .country(DEFAULT_COUNTRY)
                 .phone(DEFAULT_PHONE)
-                .active(DEFAULT_ACTIVE);
+                .active(DEFAULT_ACTIVE)
+                .longitude(DEFAULT_LONGITUDE)
+                .latitude(DEFAULT_LATITUDE);
         return client;
     }
 
@@ -157,6 +165,8 @@ public class ClientResourceIntTest {
         assertThat(testClient.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testClient.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testClient.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testClient.getLongitude()).isEqualTo(DEFAULT_LONGITUDE);
+        assertThat(testClient.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
     }
 
     @Test
@@ -200,7 +210,9 @@ public class ClientResourceIntTest {
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
-            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.toString())));
+            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.toString())))
+            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())));
     }
 
     @Test
@@ -224,7 +236,9 @@ public class ClientResourceIntTest {
             .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
-            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.toString()));
+            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.toString()))
+            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.doubleValue()))
+            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.doubleValue()));
     }
 
     @Test
@@ -256,7 +270,9 @@ public class ClientResourceIntTest {
                 .zip(UPDATED_ZIP)
                 .country(UPDATED_COUNTRY)
                 .phone(UPDATED_PHONE)
-                .active(UPDATED_ACTIVE);
+                .active(UPDATED_ACTIVE)
+                .longitude(UPDATED_LONGITUDE)
+                .latitude(UPDATED_LATITUDE);
 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -278,6 +294,8 @@ public class ClientResourceIntTest {
         assertThat(testClient.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testClient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testClient.getActive()).isEqualTo(UPDATED_ACTIVE);
+        assertThat(testClient.getLongitude()).isEqualTo(UPDATED_LONGITUDE);
+        assertThat(testClient.getLatitude()).isEqualTo(UPDATED_LATITUDE);
     }
 
     @Test

@@ -1,12 +1,12 @@
-<div>
+<div *ngIf="client">
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h2>ADDRESS </h2>
 
             <div>
-                24 Summerfield Blvd.
-                <BR> Dayton, NJ 08810
-                <BR> Tel: 732-274-8808
+                {{client.address1}} {{client.address2}}
+                <BR> {{client.city}}, {{client.state}} {{client.zip}} {{client.country}}
+                <BR> Tel: {{client.phone}}
             </div>
 
             <h2>Hours</h2>
@@ -15,7 +15,7 @@
                 <BR> Sunday 11:00 AM–9:00PM
             </div>
             <div id="map">
-                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                <sebm-google-map [latitude]="lat" [longitude]="lng"  [zoom]="zoom">
                     <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
                 </sebm-google-map>
             </div>
