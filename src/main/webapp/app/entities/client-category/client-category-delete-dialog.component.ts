@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from 'ng-jhipster';
 
-import { ClientCategory } from './client-category.model';
-import { ClientCategoryPopupService } from './client-category-popup.service';
-import { ClientCategoryService } from './client-category.service';
+import { Client_category } from './client-category.model';
+import { Client_categoryPopupService } from './client-category-popup.service';
+import { Client_categoryService } from './client-category.service';
 
 @Component({
     selector: 'jhi-client-category-delete-dialog',
     templateUrl: './client-category-delete-dialog.component.html'
 })
-export class ClientCategoryDeleteDialogComponent {
+export class Client_categoryDeleteDialogComponent {
 
-    clientCategory: ClientCategory;
+    client_category: Client_category;
 
     constructor(
-        private clientCategoryService: ClientCategoryService,
+        private client_categoryService: Client_categoryService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
@@ -28,10 +28,10 @@ export class ClientCategoryDeleteDialogComponent {
     }
 
     confirmDelete (id: number) {
-        this.clientCategoryService.delete(id).subscribe(response => {
+        this.client_categoryService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
-                name: 'clientCategoryListModification',
-                content: 'Deleted an clientCategory'
+                name: 'client_categoryListModification',
+                content: 'Deleted an client_category'
             });
             this.activeModal.dismiss(true);
         });
@@ -42,20 +42,20 @@ export class ClientCategoryDeleteDialogComponent {
     selector: 'jhi-client-category-delete-popup',
     template: ''
 })
-export class ClientCategoryDeletePopupComponent implements OnInit, OnDestroy {
+export class Client_categoryDeletePopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor (
         private route: ActivatedRoute,
-        private clientCategoryPopupService: ClientCategoryPopupService
+        private client_categoryPopupService: Client_categoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            this.modalRef = this.clientCategoryPopupService
-                .open(ClientCategoryDeleteDialogComponent, params['id']);
+            this.modalRef = this.client_categoryPopupService
+                .open(Client_categoryDeleteDialogComponent, params['id']);
         });
     }
 

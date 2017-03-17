@@ -2,21 +2,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, ParseLinks, PaginationUtil, AlertService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, AlertService, DataUtils } from 'ng-jhipster';
 
-import { Client_category } from './client-category.model';
-import { Client_categoryService } from './client-category.service';
+import { ClientMenu } from './client-menu.model';
+import { ClientMenuService } from './client-menu.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
-    selector: 'jhi-client-category',
-    templateUrl: './client-category.component.html'
+    selector: 'jhi-client-menu',
+    templateUrl: './client-menu.component.html'
 })
-export class Client_categoryComponent implements OnInit, OnDestroy {
+export class ClientMenuComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
-    client_categories: Client_category[];
+    clientMenus: ClientMenu[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -31,11 +31,12 @@ currentAccount: any;
     reverse: any;
 
     constructor(
-        private client_categoryService: Client_categoryService,
+        private clientMenuService: ClientMenuService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
+        private dataUtils: DataUtils,
         private router: Router,
         private eventManager: EventManager,
         private paginationUtil: PaginationUtil,
@@ -51,7 +52,7 @@ currentAccount: any;
     }
 
     loadAll() {
-        this.client_categoryService.query({
+        this.clientMenuService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
@@ -66,7 +67,7 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/client-category'], {queryParams:
+        this.router.navigate(['/client-menu'], {queryParams:
             {
                 page: this.page,
                 size: this.itemsPerPage,
@@ -78,7 +79,7 @@ currentAccount: any;
 
     clear() {
         this.page = 0;
-        this.router.navigate(['/client-category', {
+        this.router.navigate(['/client-menu', {
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
         }]);
@@ -89,21 +90,28 @@ currentAccount: any;
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInClient_categories();
+        this.registerChangeInClientMenus();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Client_category) {
+    trackId (index: number, item: ClientMenu) {
         return item.id;
     }
 
 
 
-    registerChangeInClient_categories() {
-        this.eventSubscriber = this.eventManager.subscribe('client_categoryListModification', (response) => this.loadAll());
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+    registerChangeInClientMenus() {
+        this.eventSubscriber = this.eventManager.subscribe('clientMenuListModification', (response) => this.loadAll());
     }
 
     sort () {
@@ -119,7 +127,7 @@ currentAccount: any;
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
-        this.client_categories = data;
+        this.clientMenus = data;
     }
 
     private onError (error) {

@@ -1,19 +1,9 @@
 
-<div *ngIf="clientCategory">
-    <h2><span>Client Category</span> {{clientCategory.id}}</h2>
+<div *ngIf="client_category">
+    <h2><span jhiTranslate="foodApp.client_category.detail.title">Client Category</span> {{client_category.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row">
-        <dt><span>Category Name</span></dt>
-        <dd>
-            <span>{{clientCategory.categoryName}}</span>
-        </dd>
-        <dt><span>Client</span></dt>
-        <dd>
-            <div *ngIf="clientCategory.client">
-                <a [routerLink]="['client', clientCategory.client?.id]">{{clientCategory.client?.clientName}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"
@@ -23,7 +13,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'client-category/'+ clientCategory.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'client-category/'+ client_category.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>

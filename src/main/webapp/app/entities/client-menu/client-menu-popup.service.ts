@@ -1,15 +1,15 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Client_category } from './client-category.model';
-import { Client_categoryService } from './client-category.service';
+import { ClientMenu } from './client-menu.model';
+import { ClientMenuService } from './client-menu.service';
 @Injectable()
-export class Client_categoryPopupService {
+export class ClientMenuPopupService {
     private isOpen = false;
     constructor (
         private modalService: NgbModal,
         private router: Router,
-        private client_categoryService: Client_categoryService
+        private clientMenuService: ClientMenuService
     ) {}
 
     open (component: Component, id?: number | any): NgbModalRef {
@@ -19,17 +19,17 @@ export class Client_categoryPopupService {
         this.isOpen = true;
 
         if (id) {
-            this.client_categoryService.find(id).subscribe(client_category => {
-                this.client_categoryModalRef(component, client_category);
+            this.clientMenuService.find(id).subscribe(clientMenu => {
+                this.clientMenuModalRef(component, clientMenu);
             });
         } else {
-            return this.client_categoryModalRef(component, new Client_category());
+            return this.clientMenuModalRef(component, new ClientMenu());
         }
     }
 
-    client_categoryModalRef(component: Component, client_category: Client_category): NgbModalRef {
+    clientMenuModalRef(component: Component, clientMenu: ClientMenu): NgbModalRef {
         let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.client_category = client_category;
+        modalRef.componentInstance.clientMenu = clientMenu;
         modalRef.result.then(result => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;

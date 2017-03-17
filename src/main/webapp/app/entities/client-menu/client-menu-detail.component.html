@@ -1,0 +1,50 @@
+
+<div *ngIf="clientMenu">
+    <h2><span>Client Menu</span> {{clientMenu.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row">
+        <dt><span >Item Id</span></dt>
+        <dd>
+            <span>{{clientMenu.item_id}}</span>
+        </dd>
+        <dt><span >Item Name</span></dt>
+        <dd>
+            <span>{{clientMenu.item_name}}</span>
+        </dd>
+        <dt><span >Item Image</span></dt>
+        <dd>
+            <div *ngIf="clientMenu.item_image">
+                <a (click)="openFile(clientMenu.item_imageContentType, clientMenu.item_image)">
+                    <img [src]="'data:' + clientMenu.item_imageContentType + ';base64,' + clientMenu.item_image" style="max-width: 100%;" alt="clientMenu image"/>
+                </a>
+                {{clientMenu.item_imageContentType}}, {{byteSize(clientMenu.item_image)}}
+            </div>
+        </dd>
+        <dt><span >Item Price</span></dt>
+        <dd>
+            <span>{{clientMenu.item_price}}</span>
+        </dd>
+        <dt><span >Category Id</span></dt>
+        <dd>
+            <span>{{clientMenu.category_id}}</span>
+        </dd>
+        <dt><span >Item Desc</span></dt>
+        <dd>
+            <span>{{clientMenu.item_desc}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client-menu/'+ clientMenu.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

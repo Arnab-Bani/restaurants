@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Client_category } from './client-category.model';
+import { ClientMenu } from './client-menu.model';
 @Injectable()
-export class Client_categoryService {
+export class ClientMenuService {
 
-    private resourceUrl = 'api/client-categories';
+    private resourceUrl = 'api/client-menus';
 
     constructor(private http: Http) { }
 
-    create(client_category: Client_category): Observable<Client_category> {
-        let copy: Client_category = Object.assign({}, client_category);
+    create(clientMenu: ClientMenu): Observable<ClientMenu> {
+        let copy: ClientMenu = Object.assign({}, clientMenu);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(client_category: Client_category): Observable<Client_category> {
-        let copy: Client_category = Object.assign({}, client_category);
+    update(clientMenu: ClientMenu): Observable<ClientMenu> {
+        let copy: ClientMenu = Object.assign({}, clientMenu);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Client_category> {
+    find(id: number): Observable<ClientMenu> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });

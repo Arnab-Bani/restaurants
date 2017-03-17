@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "item_id",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "item_name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "item_image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "item_price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "category_id",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "item_desc",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317003354",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "client_menu",
+    "pagination": "pagination"
+}

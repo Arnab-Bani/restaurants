@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+        <h4 class="modal-title" id="myClientMenuLabel">Create or edit a Client Menu</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!clientMenu.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="clientMenu.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_item_id">Item Id</label>
+            <input type="number" class="form-control" name="item_id" id="field_item_id"
+                [(ngModel)]="clientMenu.item_id"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_item_name">Item Name</label>
+            <input type="text" class="form-control" name="item_name" id="field_item_name"
+                [(ngModel)]="clientMenu.item_name"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_item_image">Item Image</label>
+            <div>
+                <img [src]="'data:' + clientMenu.item_imageContentType + ';base64,' + clientMenu.item_image" style="max-height: 100px;" *ngIf="clientMenu.item_image" alt="clientMenu image"/>
+                <div *ngIf="clientMenu.item_image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{clientMenu.item_imageContentType}}, {{byteSize(clientMenu.item_image)}}</span>
+                    <button type="button" (click)="clientMenu.item_image=null;clientMenu.item_imageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, clientMenu, 'item_image', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="item_image" id="field_item_image"
+                [(ngModel)]="clientMenu.item_image"
+             />
+            <input type="hidden" class="form-control" name="item_imageContentType" id="field_item_imageContentType"
+                [(ngModel)]="clientMenu.item_imageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_item_price">Item Price</label>
+            <input type="number" class="form-control" name="item_price" id="field_item_price"
+                [(ngModel)]="clientMenu.item_price"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category_id">Category Id</label>
+            <input type="number" class="form-control" name="category_id" id="field_category_id"
+                [(ngModel)]="clientMenu.category_id"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_item_desc">Item Desc</label>
+            <input type="text" class="form-control" name="item_desc" id="field_item_desc"
+                [(ngModel)]="clientMenu.item_desc"
+             />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

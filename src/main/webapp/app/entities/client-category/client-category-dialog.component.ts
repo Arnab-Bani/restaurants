@@ -5,26 +5,22 @@ import { Response } from '@angular/http';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService } from 'ng-jhipster';
 
-import { ClientCategory } from './client-category.model';
-import { ClientCategoryPopupService } from './client-category-popup.service';
-import { ClientCategoryService } from './client-category.service';
-import { Client, ClientService } from '../client';
+import { Client_category } from './client-category.model';
+import { Client_categoryPopupService } from './client-category-popup.service';
+import { Client_categoryService } from './client-category.service';
 @Component({
     selector: 'jhi-client-category-dialog',
     templateUrl: './client-category-dialog.component.html'
 })
-export class ClientCategoryDialogComponent implements OnInit {
+export class Client_categoryDialogComponent implements OnInit {
 
-    clientCategory: ClientCategory;
+    client_category: Client_category;
     authorities: any[];
     isSaving: boolean;
-
-    clients: Client[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
-        private clientCategoryService: ClientCategoryService,
-        private clientService: ClientService,
+        private client_categoryService: Client_categoryService,
         private eventManager: EventManager
     ) {
     }
@@ -32,8 +28,6 @@ export class ClientCategoryDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.clientService.query().subscribe(
-            (res: Response) => { this.clients = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
@@ -41,17 +35,17 @@ export class ClientCategoryDialogComponent implements OnInit {
 
     save () {
         this.isSaving = true;
-        if (this.clientCategory.id !== undefined) {
-            this.clientCategoryService.update(this.clientCategory)
-                .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+        if (this.client_category.id !== undefined) {
+            this.client_categoryService.update(this.client_category)
+                .subscribe((res: Client_category) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
-            this.clientCategoryService.create(this.clientCategory)
-                .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+            this.client_categoryService.create(this.client_category)
+                .subscribe((res: Client_category) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
-    private onSaveSuccess (result: ClientCategory) {
-        this.eventManager.broadcast({ name: 'clientCategoryListModification', content: 'OK'});
+    private onSaveSuccess (result: Client_category) {
+        this.eventManager.broadcast({ name: 'client_categoryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -64,34 +58,30 @@ export class ClientCategoryDialogComponent implements OnInit {
     private onError (error) {
         this.alertService.error(error.message, null, null);
     }
-
-    trackClientById(index: number, item: Client) {
-        return item.id;
-    }
 }
 
 @Component({
     selector: 'jhi-client-category-popup',
     template: ''
 })
-export class ClientCategoryPopupComponent implements OnInit, OnDestroy {
+export class Client_categoryPopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor (
         private route: ActivatedRoute,
-        private clientCategoryPopupService: ClientCategoryPopupService
+        private client_categoryPopupService: Client_categoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
             if ( params['id'] ) {
-                this.modalRef = this.clientCategoryPopupService
-                    .open(ClientCategoryDialogComponent, params['id']);
+                this.modalRef = this.client_categoryPopupService
+                    .open(Client_categoryDialogComponent, params['id']);
             } else {
-                this.modalRef = this.clientCategoryPopupService
-                    .open(ClientCategoryDialogComponent);
+                this.modalRef = this.client_categoryPopupService
+                    .open(Client_categoryDialogComponent);
             }
 
         });

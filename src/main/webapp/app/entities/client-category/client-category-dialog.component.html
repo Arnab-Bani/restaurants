@@ -5,29 +5,16 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
-        <h4 class="modal-title" id="myClientCategoryLabel">Create or edit a Client Category</h4>
+        <h4 class="modal-title" id="myClient_categoryLabel" jhiTranslate="foodApp.client_category.home.createOrEditLabel">Create or edit a Client Category</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!clientCategory.id">
+        <div class="form-group" [hidden]="!client_category.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="clientCategory.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_categoryName">Category Name</label>
-            <input type="text" class="form-control" name="categoryName" id="field_categoryName"
-                [(ngModel)]="clientCategory.categoryName"
-             />
+                   [(ngModel)]="client_category.id" readonly />
         </div>
 
-        <div class="form-group">
-            <label for="field_client">Client</label>
-            <select class="form-control" id="field_client" name="client" [(ngModel)]="clientCategory.client" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="clientOption.id === clientCategory.client?.id ? clientCategory.client : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientName}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

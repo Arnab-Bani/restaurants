@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientCategory } from './client-category.model';
-import { ClientCategoryService } from './client-category.service';
+import { Client_category } from './client-category.model';
+import { Client_categoryService } from './client-category.service';
 
 @Component({
     selector: 'jhi-client-category-detail',
     templateUrl: './client-category-detail.component.html'
 })
-export class ClientCategoryDetailComponent implements OnInit, OnDestroy {
+export class Client_categoryDetailComponent implements OnInit, OnDestroy {
 
-    clientCategory: ClientCategory;
+    client_category: Client_category;
     private subscription: any;
 
     constructor(
-        private clientCategoryService: ClientCategoryService,
+        private client_categoryService: Client_categoryService,
         private route: ActivatedRoute
     ) {
     }
@@ -25,8 +25,8 @@ export class ClientCategoryDetailComponent implements OnInit, OnDestroy {
     }
 
     load (id) {
-        this.clientCategoryService.find(id).subscribe(clientCategory => {
-            this.clientCategory = clientCategory;
+        this.client_categoryService.find(id).subscribe(client_category => {
+            this.client_category = client_category;
         });
     }
     previousState() {

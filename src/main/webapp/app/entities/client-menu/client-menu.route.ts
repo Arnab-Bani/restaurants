@@ -4,15 +4,15 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActiva
 import { UserRouteAccessService } from '../../shared';
 import { PaginationUtil } from 'ng-jhipster';
 
-import { Client_categoryComponent } from './client-category.component';
-import { Client_categoryDetailComponent } from './client-category-detail.component';
-import { Client_categoryPopupComponent } from './client-category-dialog.component';
-import { Client_categoryDeletePopupComponent } from './client-category-delete-dialog.component';
+import { ClientMenuComponent } from './client-menu.component';
+import { ClientMenuDetailComponent } from './client-menu-detail.component';
+import { ClientMenuPopupComponent } from './client-menu-dialog.component';
+import { ClientMenuDeletePopupComponent } from './client-menu-delete-dialog.component';
 
 import { Principal } from '../../shared';
 
 @Injectable()
-export class Client_categoryResolvePagingParams implements Resolve<any> {
+export class ClientMenuResolvePagingParams implements Resolve<any> {
 
   constructor(private paginationUtil: PaginationUtil) {}
 
@@ -27,52 +27,52 @@ export class Client_categoryResolvePagingParams implements Resolve<any> {
   }
 }
 
-export const client_categoryRoute: Routes = [
+export const clientMenuRoute: Routes = [
   {
-    path: 'client-category',
-    component: Client_categoryComponent,
+    path: 'client-menu',
+    component: ClientMenuComponent,
     resolve: {
-      'pagingParams': Client_categoryResolvePagingParams
+      'pagingParams': ClientMenuResolvePagingParams
     },
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientMenus'
     }
   }, {
-    path: 'client-category/:id',
-    component: Client_categoryDetailComponent,
+    path: 'client-menu/:id',
+    component: ClientMenuDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientMenus'
     }
   }
 ];
 
-export const client_categoryPopupRoute: Routes = [
+export const clientMenuPopupRoute: Routes = [
   {
-    path: 'client-category-new',
-    component: Client_categoryPopupComponent,
+    path: 'client-menu-new',
+    component: ClientMenuPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientMenus'
     },
     outlet: 'popup'
   },
   {
-    path: 'client-category/:id/edit',
-    component: Client_categoryPopupComponent,
+    path: 'client-menu/:id/edit',
+    component: ClientMenuPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientMenus'
     },
     outlet: 'popup'
   },
   {
-    path: 'client-category/:id/delete',
-    component: Client_categoryDeletePopupComponent,
+    path: 'client-menu/:id/delete',
+    component: ClientMenuDeletePopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientMenus'
     },
     outlet: 'popup'
   }

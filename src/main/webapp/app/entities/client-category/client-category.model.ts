@@ -1,8 +1,5 @@
-import { Client } from '../client';
-export class ClientCategory {
+export class Client_category {
     constructor(
         public id?: number,
-        public categoryName?: string,
-        public client?: Client,
     ) { }
 }
