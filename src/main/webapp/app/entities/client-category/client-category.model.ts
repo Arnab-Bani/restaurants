@@ -1,4 +1,4 @@
-export class Client_category {
+export class ClientCategory {
     constructor(
         public id?: number,
     ) { }

@@ -4,22 +4,22 @@ import { RouterModule } from '@angular/router';
 import { FoodSharedModule } from '../../shared';
 
 import {
-    Client_categoryService,
-    Client_categoryPopupService,
-    Client_categoryComponent,
-    Client_categoryDetailComponent,
-    Client_categoryDialogComponent,
-    Client_categoryPopupComponent,
-    Client_categoryDeletePopupComponent,
-    Client_categoryDeleteDialogComponent,
-    client_categoryRoute,
-    client_categoryPopupRoute,
-    Client_categoryResolvePagingParams,
+    ClientCategoryService,
+    ClientCategoryPopupService,
+    ClientCategoryComponent,
+    ClientCategoryDetailComponent,
+    ClientCategoryDialogComponent,
+    ClientCategoryPopupComponent,
+    ClientCategoryDeletePopupComponent,
+    ClientCategoryDeleteDialogComponent,
+    clientCategoryRoute,
+    clientCategoryPopupRoute,
+    ClientCategoryResolvePagingParams,
 } from './';
 
 let ENTITY_STATES = [
-    ...client_categoryRoute,
-    ...client_categoryPopupRoute,
+    ...clientCategoryRoute,
+    ...clientCategoryPopupRoute,
 ];
 
 @NgModule({
@@ -28,24 +28,24 @@ let ENTITY_STATES = [
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
-        Client_categoryComponent,
-        Client_categoryDetailComponent,
-        Client_categoryDialogComponent,
-        Client_categoryDeleteDialogComponent,
-        Client_categoryPopupComponent,
-        Client_categoryDeletePopupComponent,
+        ClientCategoryComponent,
+        ClientCategoryDetailComponent,
+        ClientCategoryDialogComponent,
+        ClientCategoryDeleteDialogComponent,
+        ClientCategoryPopupComponent,
+        ClientCategoryDeletePopupComponent,
     ],
     entryComponents: [
-        Client_categoryComponent,
-        Client_categoryDialogComponent,
-        Client_categoryPopupComponent,
-        Client_categoryDeleteDialogComponent,
-        Client_categoryDeletePopupComponent,
+        ClientCategoryComponent,
+        ClientCategoryDialogComponent,
+        ClientCategoryPopupComponent,
+        ClientCategoryDeleteDialogComponent,
+        ClientCategoryDeletePopupComponent,
     ],
     providers: [
-        Client_categoryService,
-        Client_categoryPopupService,
-        Client_categoryResolvePagingParams,
+        ClientCategoryService,
+        ClientCategoryPopupService,
+        ClientCategoryResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

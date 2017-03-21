@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { EventManager, ParseLinks, PaginationUtil, AlertService } from 'ng-jhipster';
 
-import { Client_category } from './client-category.model';
-import { Client_categoryService } from './client-category.service';
+import { ClientCategory } from './client-category.model';
+import { ClientCategoryService } from './client-category.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
@@ -13,10 +13,10 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     selector: 'jhi-client-category',
     templateUrl: './client-category.component.html'
 })
-export class Client_categoryComponent implements OnInit, OnDestroy {
+export class ClientCategoryComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
-    client_categories: Client_category[];
+    client_categories: ClientCategory[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -31,7 +31,7 @@ currentAccount: any;
     reverse: any;
 
     constructor(
-        private client_categoryService: Client_categoryService,
+        private client_categoryService: ClientCategoryService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
         private principal: Principal,
@@ -96,7 +96,7 @@ currentAccount: any;
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Client_category) {
+    trackId (index: number, item: ClientCategory) {
         return item.id;
     }
 

@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Client_category } from './client-category.model';
+import { ClientCategory } from './client-category.model';
 @Injectable()
-export class Client_categoryService {
+export class ClientCategoryService {
 
     private resourceUrl = 'api/client-categories';
 
     constructor(private http: Http) { }
 
-    create(client_category: Client_category): Observable<Client_category> {
-        let copy: Client_category = Object.assign({}, client_category);
+    create(client_category: ClientCategory): Observable<ClientCategory> {
+        let copy: ClientCategory = Object.assign({}, client_category);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(client_category: Client_category): Observable<Client_category> {
-        let copy: Client_category = Object.assign({}, client_category);
+    update(client_category: ClientCategory): Observable<ClientCategory> {
+        let copy: ClientCategory = Object.assign({}, client_category);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Client_category> {
+    find(id: number): Observable<ClientCategory> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });
@@ -39,8 +39,6 @@ export class Client_categoryService {
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
-
-
 
     private createRequestOption(req?: any): BaseRequestOptions {
         let options: BaseRequestOptions = new BaseRequestOptions();

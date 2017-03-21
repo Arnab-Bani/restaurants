@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from 'ng-jhipster';
 
-import { Client_category } from './client-category.model';
-import { Client_categoryPopupService } from './client-category-popup.service';
-import { Client_categoryService } from './client-category.service';
+import { ClientCategory } from './client-category.model';
+import { ClientCategoryPopupService } from './client-category-popup.service';
+import { ClientCategoryService } from './client-category.service';
 
 @Component({
     selector: 'jhi-client-category-delete-dialog',
     templateUrl: './client-category-delete-dialog.component.html'
 })
-export class Client_categoryDeleteDialogComponent {
+export class ClientCategoryDeleteDialogComponent {
 
-    client_category: Client_category;
+    client_category: ClientCategory;
 
     constructor(
-        private client_categoryService: Client_categoryService,
+        private client_categoryService: ClientCategoryService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
@@ -42,20 +42,20 @@ export class Client_categoryDeleteDialogComponent {
     selector: 'jhi-client-category-delete-popup',
     template: ''
 })
-export class Client_categoryDeletePopupComponent implements OnInit, OnDestroy {
+export class ClientCategoryDeletePopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor (
         private route: ActivatedRoute,
-        private client_categoryPopupService: Client_categoryPopupService
+        private client_categoryPopupService: ClientCategoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
             this.modalRef = this.client_categoryPopupService
-                .open(Client_categoryDeleteDialogComponent, params['id']);
+                .open(ClientCategoryDeleteDialogComponent, params['id']);
         });
     }
 

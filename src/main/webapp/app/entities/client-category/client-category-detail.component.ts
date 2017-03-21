@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Client_category } from './client-category.model';
-import { Client_categoryService } from './client-category.service';
+import { ClientCategory } from './client-category.model';
+import { ClientCategoryService } from './client-category.service';
 
 @Component({
     selector: 'jhi-client-category-detail',
     templateUrl: './client-category-detail.component.html'
 })
-export class Client_categoryDetailComponent implements OnInit, OnDestroy {
+export class ClientCategoryDetailComponent implements OnInit, OnDestroy {
 
-    client_category: Client_category;
+    client_category: ClientCategory;
     private subscription: any;
 
     constructor(
-        private client_categoryService: Client_categoryService,
+        private client_categoryService: ClientCategoryService,
         private route: ActivatedRoute
     ) {
     }

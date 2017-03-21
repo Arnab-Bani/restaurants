@@ -5,22 +5,22 @@ import { Response } from '@angular/http';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService } from 'ng-jhipster';
 
-import { Client_category } from './client-category.model';
-import { Client_categoryPopupService } from './client-category-popup.service';
-import { Client_categoryService } from './client-category.service';
+import { ClientCategory } from './client-category.model';
+import { ClientCategoryPopupService } from './client-category-popup.service';
+import { ClientCategoryService } from './client-category.service';
 @Component({
     selector: 'jhi-client-category-dialog',
     templateUrl: './client-category-dialog.component.html'
 })
-export class Client_categoryDialogComponent implements OnInit {
+export class ClientCategoryDialogComponent implements OnInit {
 
-    client_category: Client_category;
+    client_category: ClientCategory;
     authorities: any[];
     isSaving: boolean;
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
-        private client_categoryService: Client_categoryService,
+        private client_categoryService: ClientCategoryService,
         private eventManager: EventManager
     ) {
     }
@@ -37,14 +37,14 @@ export class Client_categoryDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.client_category.id !== undefined) {
             this.client_categoryService.update(this.client_category)
-                .subscribe((res: Client_category) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
             this.client_categoryService.create(this.client_category)
-                .subscribe((res: Client_category) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
-    private onSaveSuccess (result: Client_category) {
+    private onSaveSuccess (result: ClientCategory) {
         this.eventManager.broadcast({ name: 'client_categoryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -64,24 +64,24 @@ export class Client_categoryDialogComponent implements OnInit {
     selector: 'jhi-client-category-popup',
     template: ''
 })
-export class Client_categoryPopupComponent implements OnInit, OnDestroy {
+export class ClientCategoryPopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor (
         private route: ActivatedRoute,
-        private client_categoryPopupService: Client_categoryPopupService
+        private client_categoryPopupService: ClientCategoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
             if ( params['id'] ) {
                 this.modalRef = this.client_categoryPopupService
-                    .open(Client_categoryDialogComponent, params['id']);
+                    .open(ClientCategoryDialogComponent, params['id']);
             } else {
                 this.modalRef = this.client_categoryPopupService
-                    .open(Client_categoryDialogComponent);
+                    .open(ClientCategoryDialogComponent);
             }
 
         });

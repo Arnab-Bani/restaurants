@@ -4,15 +4,15 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActiva
 import { UserRouteAccessService } from '../../shared';
 import { PaginationUtil } from 'ng-jhipster';
 
-import { Client_categoryComponent } from './client-category.component';
-import { Client_categoryDetailComponent } from './client-category-detail.component';
-import { Client_categoryPopupComponent } from './client-category-dialog.component';
-import { Client_categoryDeletePopupComponent } from './client-category-delete-dialog.component';
+import { ClientCategoryComponent } from './client-category.component';
+import { ClientCategoryDetailComponent } from './client-category-detail.component';
+import { ClientCategoryPopupComponent } from './client-category-dialog.component';
+import { ClientCategoryDeletePopupComponent } from './client-category-delete-dialog.component';
 
 import { Principal } from '../../shared';
 
 @Injectable()
-export class Client_categoryResolvePagingParams implements Resolve<any> {
+export class ClientCategoryResolvePagingParams implements Resolve<any> {
 
   constructor(private paginationUtil: PaginationUtil) {}
 
@@ -27,12 +27,12 @@ export class Client_categoryResolvePagingParams implements Resolve<any> {
   }
 }
 
-export const client_categoryRoute: Routes = [
+export const clientCategoryRoute: Routes = [
   {
     path: 'client-category',
-    component: Client_categoryComponent,
+    component: ClientCategoryComponent,
     resolve: {
-      'pagingParams': Client_categoryResolvePagingParams
+      'pagingParams': ClientCategoryResolvePagingParams
     },
     data: {
         authorities: ['ROLE_USER'],
@@ -40,7 +40,7 @@ export const client_categoryRoute: Routes = [
     }
   }, {
     path: 'client-category/:id',
-    component: Client_categoryDetailComponent,
+    component: ClientCategoryDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'Client_categories'
@@ -48,10 +48,10 @@ export const client_categoryRoute: Routes = [
   }
 ];
 
-export const client_categoryPopupRoute: Routes = [
+export const clientCategoryPopupRoute: Routes = [
   {
     path: 'client-category-new',
-    component: Client_categoryPopupComponent,
+    component: ClientCategoryPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'Client_categories'
@@ -60,7 +60,7 @@ export const client_categoryPopupRoute: Routes = [
   },
   {
     path: 'client-category/:id/edit',
-    component: Client_categoryPopupComponent,
+    component: ClientCategoryPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'Client_categories'
@@ -69,7 +69,7 @@ export const client_categoryPopupRoute: Routes = [
   },
   {
     path: 'client-category/:id/delete',
-    component: Client_categoryDeletePopupComponent,
+    component: ClientCategoryDeletePopupComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'Client_categories'
