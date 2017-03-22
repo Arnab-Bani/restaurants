@@ -1,13 +1,18 @@
 <div>
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 >APPETIZERS / SIDES & SOUPS</h2>
+    <div class="table-responsive" *ngIf="clientMenus">
+        <table class="table ">
+            <thead>
+                <th><span >Item Name</span> <span class="fa"></span></th>
+                <th><span >Item Image</span> <span class="fa"></span></th>
+                <th><span >Item Price</span> <span class="fa"></span></th>
+                <th><span >Item Desc</span> <span class="fa"></span></th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let clientMenu of clientMenus ;trackBy: trackId">
 
-            <div>
-                HOT ANTIPASTO( Eggplant rollatini, clams, mussels, shrimp & stuffed mushrooms)        $13.95 <BR>
-                BROCCOLI RABE               Traditional & superb               $9.95
-            </div>
-        </div>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>

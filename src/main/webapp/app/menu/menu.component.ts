@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { Principal, AccountService } from '../shared';
+import { ITEMS_PER_PAGE, Principal, AccountService } from '../shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientMenu } from '../entities/client-menu/client-menu.model';
 import { ClientMenuService } from '../entities/client-menu/client-menu.service';
 import { EventManager, ParseLinks, PaginationUtil, AlertService, DataUtils } from 'ng-jhipster';
+
+import { PaginationConfig } from '../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-settings',
@@ -24,15 +26,25 @@ export class MenuComponent implements OnInit {
     predicate: any;
     previousPage: any;
     reverse: any;
+    routeData: any;
 
     constructor(
         private clientMenuService: ClientMenuService,
         private activatedRoute: ActivatedRoute,
         private parseLinks: ParseLinks,
          private alertService: AlertService
-    ) {}
+    ) {
+        this.itemsPerPage = ITEMS_PER_PAGE;
+        this.routeData = this.activatedRoute.data.subscribe(data => {
+            this.page = data['pagingParams'].page;
+            this.previousPage = data['pagingParams'].page;
+            this.reverse = data['pagingParams'].ascending;
+            this.predicate = data['pagingParams'].predicate;
+        });
+    }
 
     ngOnInit () {
+        this.page = 2;
         this.loadAll();
     }
 

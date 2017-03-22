@@ -64,7 +64,7 @@ describe('Component Tests', () => {
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.ClientCategoryDetailComponent).toEqual(jasmine.objectContaining({id:10}));
+
             });
         });
     });
