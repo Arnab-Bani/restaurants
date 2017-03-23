@@ -9,7 +9,15 @@
             </thead>
             <tbody>
             <tr *ngFor="let clientMenu of clientMenus ;trackBy: trackId">
+                <td>{{clientMenu.item_name}}</td>
+                <td>
+                    <a *ngIf="clientMenu.item_image" (click)="openFile(clientMenu.item_imageContentType, clientMenu.item_image)">
+                        <img [src]="'data:' + clientMenu.item_imageContentType + ';base64,' + clientMenu.item_image" style="max-height: 30px;" alt="clientMenu image"/>
+                    </a>
 
+                </td>
+                <td>{{clientMenu.item_price}}</td>
+                <td>{{clientMenu.item_desc}}</td>
             </tr>
             </tbody>
         </table>

@@ -1,14 +1,8 @@
 <nav class="navbar navbar-dark jh-navbar">
-    <div class="jh-logo-container float-xs-left">
-        <a class="jh-navbar-toggler hidden-lg-up float-xs-left" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-            <i class="fa fa-bars"></i>
-        </a>
-        <a class="navbar-brand logo float-xs-right" routerLink="/" (click)="collapseNavbar()">
-            <span class="navbar-title">Restaurant</span> <span class="navbar-version">{{version}}</span>
-        </a>
-    </div>
-    <div class="collapse navbar-toggleable-md float-lg-right" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+
+    <div class="collapse navbar-toggleable-md float-lg-left form-control-danger" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="nav navbar-nav float-lg-right">
+
             <li *ngSwitchCase="true" jhiHasAuthority="ROLE_USER" class="nav-item" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <i class="fa fa-home" aria-hidden="true"></i>

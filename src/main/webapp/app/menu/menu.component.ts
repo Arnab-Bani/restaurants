@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit () {
-        this.page = 2;
+        this.page = 1;
         this.loadAll();
     }
 
