@@ -1,12 +1,7 @@
 <div>
     <div class="table-responsive" *ngIf="clientMenus">
         <table class="table ">
-            <thead>
-                <th><span >Item Name</span> <span class="fa"></span></th>
-                <th><span >Item Image</span> <span class="fa"></span></th>
-                <th><span >Item Price</span> <span class="fa"></span></th>
-                <th><span >Item Desc</span> <span class="fa"></span></th>
-            </thead>
+           
             <tbody>
             <tr *ngFor="let clientMenu of clientMenus ;trackBy: trackId">
                 <td>{{clientMenu.item_name}}</td>

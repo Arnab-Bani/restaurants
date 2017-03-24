@@ -203,28 +203,28 @@ ul.brand-icon {
 	float: left;
 }
 
-li.brand-icon {
-	background: #205D7A;
-	color: #000000;
+span.brand-icon {
+	background: #FFFFFF;
+	color: #00aced;
 	width: 40px;
-	height: 40px;
-	border-radius: 25px;
-	font-size: 25px;
+	height: 35px;
+	border-radius: 30px;
+	font-size: 35px;
 	text-align: center;
-	margin-right: 10px;
-	padding-top: 10%;
+	margin-right: 25px;
+	padding-top: 0%;
 }
 .fa-facebook {
-	background:#3b5998
+	background:#FFFFFF
 }
 .fa-foursquare {
-	background:#00aced
+	background:#FFFFFF
 }
 .fa-twitter {
 	background:#00aced
 }
 .fa-yelp {
-	background:#dd4b39
+	background:#FFFFFF
 }
 ul li a i {
 	transition: all 0.2s ease-in-out;

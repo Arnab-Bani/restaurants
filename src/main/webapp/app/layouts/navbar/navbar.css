@@ -8,7 +8,7 @@ Navbar
 
 .jh-navbar {
     background-color: black;
-    padding: .2em 25em;
+    padding: .2em 15em;
 }
 
 .jh-navbar .profile-image {
@@ -50,7 +50,7 @@ Navbar
 
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1092px) {
     .jh-logo-container {
         width: 100%;
     }

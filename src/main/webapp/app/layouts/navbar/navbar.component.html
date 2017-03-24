@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark jh-navbar">
 
-    <div class="collapse navbar-toggleable-md float-lg-left form-control-danger" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+    <div class="collapse navbar-toggleable-md float-lg-left " id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="nav navbar-nav float-lg-right">
 
             <li *ngSwitchCase="true" jhiHasAuthority="ROLE_USER" class="nav-item" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
