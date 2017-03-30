@@ -1,24 +1,28 @@
 
 <div *ngIf="clientFeatures">
-    <h2><span >Client Features</span> {{clientFeatures.id}}</h2>
+    <h2><span>Client Features</span> {{clientFeatures.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row">
-        <dt><span >Client Id</span></dt>
+        <dt><span>Feature Url</span></dt>
         <dd>
-            <span>{{clientFeatures.client_id}}</span>
+            <span>{{clientFeatures.featureUrl}}</span>
         </dd>
-        <dt><span >Facebook</span></dt>
+        <dt><span>Price</span></dt>
         <dd>
-            <span>{{clientFeatures.facebook}}</span>
+            <span>{{clientFeatures.price}}</span>
         </dd>
-        <dt><span >Yelp</span></dt>
+        <dt><span>Client Id</span></dt>
         <dd>
-            <span>{{clientFeatures.yelp}}</span>
+            <div *ngIf="clientFeatures.clientId">
+                <a [routerLink]="['client', clientFeatures.clientId?.id]">{{clientFeatures.clientId?.clientName}}</a>
+            </div>
         </dd>
-        <dt><span >Foursquare</span></dt>
+        <dt><span>Third Party Feature Id</span></dt>
         <dd>
-            <span>{{clientFeatures.foursquare}}</span>
+            <div *ngIf="clientFeatures.thirdPartyFeatureId">
+                <a [routerLink]="['third-party-feature', clientFeatures.thirdPartyFeatureId?.id]">{{clientFeatures.thirdPartyFeatureId?.featureName}}</a>
+            </div>
         </dd>
     </dl>
 

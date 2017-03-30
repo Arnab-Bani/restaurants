@@ -13,56 +13,75 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     selector: 'jhi-client-features',
     templateUrl: './client-features.component.html'
 })
-
 export class ClientFeaturesComponent implements OnInit, OnDestroy {
 
+currentAccount: any;
     clientFeatures: ClientFeatures[];
-    currentAccount: any;
+    error: any;
+    success: any;
     eventSubscriber: Subscription;
-    itemsPerPage: number;
+    routeData: any;
     links: any;
+    totalItems: any;
+    queryCount: any;
+    itemsPerPage: any;
     page: any;
     predicate: any;
-    queryCount: any;
+    previousPage: any;
     reverse: any;
-    totalItems: number;
 
     constructor(
         private clientFeaturesService: ClientFeaturesService,
-        private alertService: AlertService,
-        private eventManager: EventManager,
         private parseLinks: ParseLinks,
-        private principal: Principal
+        private alertService: AlertService,
+        private principal: Principal,
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+        private eventManager: EventManager,
+        private paginationUtil: PaginationUtil,
+        private paginationConfig: PaginationConfig
     ) {
-        this.clientFeatures = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
-        this.page = 0;
-        this.links = {
-            last: 0
-        };
-        this.predicate = 'id';
-        this.reverse = true;
+        this.routeData = this.activatedRoute.data.subscribe(data => {
+            this.page = data['pagingParams'].page;
+            this.previousPage = data['pagingParams'].page;
+            this.reverse = data['pagingParams'].ascending;
+            this.predicate = data['pagingParams'].predicate;
+        });
     }
 
-    loadAll () {
+    loadAll() {
         this.clientFeaturesService.query({
-            page: this.page,
+            page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()
-        }).subscribe(
+            sort: this.sort()}).subscribe(
             (res: Response) => this.onSuccess(res.json(), res.headers),
             (res: Response) => this.onError(res.json())
         );
     }
-
-    reset () {
-        this.page = 0;
-        this.clientFeatures = [];
+    loadPage (page: number) {
+        if (page !== this.previousPage) {
+            this.previousPage = page;
+            this.transition();
+        }
+    }
+    transition() {
+        this.router.navigate(['/client-features'], {queryParams:
+            {
+                page: this.page,
+                size: this.itemsPerPage,
+                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            }
+        });
         this.loadAll();
     }
 
-    loadPage(page) {
-        this.page = page;
+    clear() {
+        this.page = 0;
+        this.router.navigate(['/client-features', {
+            page: this.page,
+            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+        }]);
         this.loadAll();
     }
     ngOnInit() {
@@ -81,8 +100,10 @@ export class ClientFeaturesComponent implements OnInit, OnDestroy {
         return item.id;
     }
 
+
+
     registerChangeInClientFeatures() {
-        this.eventSubscriber = this.eventManager.subscribe('clientFeaturesListModification', (response) => this.reset());
+        this.eventSubscriber = this.eventManager.subscribe('clientFeaturesListModification', (response) => this.loadAll());
     }
 
     sort () {
@@ -93,12 +114,12 @@ export class ClientFeaturesComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private onSuccess(data, headers) {
+    private onSuccess (data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
-        for (let i = 0; i < data.length; i++) {
-            this.clientFeatures.push(data[i]);
-        }
+        this.queryCount = this.totalItems;
+        // this.page = pagingParams.page;
+        this.clientFeatures = data;
     }
 
     private onError (error) {

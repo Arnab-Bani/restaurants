@@ -18,17 +18,19 @@ public class ClientFeatures implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id")
-    private Integer client_id;
+    @Column(name = "feature_url")
+    private String featureUrl;
 
-    @Column(name = "facebook")
-    private String facebook;
+    @Column(name = "price")
+    private Double price;
 
-    @Column(name = "yelp")
-    private String yelp;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Client clientId;
 
-    @Column(name = "foursquare")
-    private String foursquare;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private ThirdPartyFeature thirdPartyFeatureId;
 
     public Long getId() {
         return id;
@@ -38,56 +40,56 @@ public class ClientFeatures implements Serializable {
         this.id = id;
     }
 
-    public Integer getClient_id() {
-        return client_id;
+    public String getFeatureUrl() {
+        return featureUrl;
     }
 
-    public ClientFeatures client_id(Integer client_id) {
-        this.client_id = client_id;
+    public ClientFeatures featureUrl(String featureUrl) {
+        this.featureUrl = featureUrl;
         return this;
     }
 
-    public void setClient_id(Integer client_id) {
-        this.client_id = client_id;
+    public void setFeatureUrl(String featureUrl) {
+        this.featureUrl = featureUrl;
     }
 
-    public String getFacebook() {
-        return facebook;
+    public Double getPrice() {
+        return price;
     }
 
-    public ClientFeatures facebook(String facebook) {
-        this.facebook = facebook;
+    public ClientFeatures price(Double price) {
+        this.price = price;
         return this;
     }
 
-    public void setFacebook(String facebook) {
-        this.facebook = facebook;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public String getYelp() {
-        return yelp;
+    public Client getClientId() {
+        return clientId;
     }
 
-    public ClientFeatures yelp(String yelp) {
-        this.yelp = yelp;
+    public ClientFeatures clientId(Client client) {
+        this.clientId = client;
         return this;
     }
 
-    public void setYelp(String yelp) {
-        this.yelp = yelp;
+    public void setClientId(Client client) {
+        this.clientId = client;
     }
 
-    public String getFoursquare() {
-        return foursquare;
+    public ThirdPartyFeature getThirdPartyFeatureId() {
+        return thirdPartyFeatureId;
     }
 
-    public ClientFeatures foursquare(String foursquare) {
-        this.foursquare = foursquare;
+    public ClientFeatures thirdPartyFeatureId(ThirdPartyFeature thirdPartyFeature) {
+        this.thirdPartyFeatureId = thirdPartyFeature;
         return this;
     }
 
-    public void setFoursquare(String foursquare) {
-        this.foursquare = foursquare;
+    public void setThirdPartyFeatureId(ThirdPartyFeature thirdPartyFeature) {
+        this.thirdPartyFeatureId = thirdPartyFeature;
     }
 
     @Override
@@ -98,11 +100,11 @@ public class ClientFeatures implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ClientFeatures client_features = (ClientFeatures) o;
-        if (client_features.id == null || id == null) {
+        ClientFeatures clientFeatures = (ClientFeatures) o;
+        if (clientFeatures.id == null || id == null) {
             return false;
         }
-        return Objects.equals(id, client_features.id);
+        return Objects.equals(id, clientFeatures.id);
     }
 
     @Override
@@ -114,10 +116,8 @@ public class ClientFeatures implements Serializable {
     public String toString() {
         return "ClientFeatures{" +
             "id=" + id +
-            ", client_id='" + client_id + "'" +
-            ", facebook='" + facebook + "'" +
-            ", yelp='" + yelp + "'" +
-            ", foursquare='" + foursquare + "'" +
+            ", featureUrl='" + featureUrl + "'" +
+            ", price='" + price + "'" +
             '}';
     }
 }

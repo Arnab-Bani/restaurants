@@ -8,6 +8,8 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { ClientFeatures } from './client-features.model';
 import { ClientFeaturesPopupService } from './client-features-popup.service';
 import { ClientFeaturesService } from './client-features.service';
+import { Client, ClientService } from '../client';
+import { ThirdPartyFeature, ThirdPartyFeatureService } from '../third-party-feature';
 @Component({
     selector: 'jhi-client-features-dialog',
     templateUrl: './client-features-dialog.component.html'
@@ -17,10 +19,16 @@ export class ClientFeaturesDialogComponent implements OnInit {
     clientFeatures: ClientFeatures;
     authorities: any[];
     isSaving: boolean;
+
+    clientids: Client[];
+
+    thirdpartyfeatureids: ThirdPartyFeature[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private clientFeaturesService: ClientFeaturesService,
+        private clientService: ClientService,
+        private thirdPartyFeatureService: ThirdPartyFeatureService,
         private eventManager: EventManager
     ) {
     }
@@ -28,6 +36,24 @@ export class ClientFeaturesDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.clientService.query({filter: 'clientfeatures-is-null'}).subscribe((res: Response) => {
+            if (!this.clientFeatures.clientId || !this.clientFeatures.clientId.id) {
+                this.clientids = res.json();
+            } else {
+                this.clientService.find(this.clientFeatures.clientId.id).subscribe((subRes: Response) => {
+                    this.clientids = [subRes].concat(res.json());
+                }, (subRes: Response) => this.onError(subRes.json()));
+            }
+        }, (res: Response) => this.onError(res.json()));
+        this.thirdPartyFeatureService.query({filter: 'clientfeatures-is-null'}).subscribe((res: Response) => {
+            if (!this.clientFeatures.thirdPartyFeatureId || !this.clientFeatures.thirdPartyFeatureId.id) {
+                this.thirdpartyfeatureids = res.json();
+            } else {
+                this.thirdPartyFeatureService.find(this.clientFeatures.thirdPartyFeatureId.id).subscribe((subRes: Response) => {
+                    this.thirdpartyfeatureids = [subRes].concat(res.json());
+                }, (subRes: Response) => this.onError(subRes.json()));
+            }
+        }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
@@ -57,6 +83,14 @@ export class ClientFeaturesDialogComponent implements OnInit {
 
     private onError (error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackClientById(index: number, item: Client) {
+        return item.id;
+    }
+
+    trackThirdPartyFeatureById(index: number, item: ThirdPartyFeature) {
+        return item.id;
     }
 }
 

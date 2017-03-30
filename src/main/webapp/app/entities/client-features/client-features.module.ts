@@ -14,6 +14,7 @@ import {
     ClientFeaturesDeleteDialogComponent,
     clientFeaturesRoute,
     clientFeaturesPopupRoute,
+    ClientFeaturesResolvePagingParams,
 } from './';
 
 let ENTITY_STATES = [
@@ -44,6 +45,7 @@ let ENTITY_STATES = [
     providers: [
         ClientFeaturesService,
         ClientFeaturesPopupService,
+        ClientFeaturesResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
