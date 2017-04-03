@@ -24,12 +24,12 @@ public class ClientFeatures implements Serializable {
     @Column(name = "price")
     private Double price;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JoinColumn
     private Client clientId;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JoinColumn
     private ThirdPartyFeature thirdPartyFeatureId;
 
     public Long getId() {
