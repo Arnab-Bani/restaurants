@@ -9,11 +9,11 @@ import { ClientCategoryService } from './client-category.service';
 })
 export class ClientCategoryDetailComponent implements OnInit, OnDestroy {
 
-    client_category: ClientCategory;
+    clientCategory: ClientCategory;
     private subscription: any;
 
     constructor(
-        private client_categoryService: ClientCategoryService,
+        private clientCategoryService: ClientCategoryService,
         private route: ActivatedRoute
     ) {
     }
@@ -25,8 +25,8 @@ export class ClientCategoryDetailComponent implements OnInit, OnDestroy {
     }
 
     load (id) {
-        this.client_categoryService.find(id).subscribe(client_category => {
-            this.client_category = client_category;
+        this.clientCategoryService.find(id).subscribe(clientCategory => {
+            this.clientCategory = clientCategory;
         });
     }
     previousState() {

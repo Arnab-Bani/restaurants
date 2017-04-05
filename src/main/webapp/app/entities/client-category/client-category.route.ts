@@ -36,14 +36,14 @@ export const clientCategoryRoute: Routes = [
     },
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientCategories'
     }
   }, {
     path: 'client-category/:id',
     component: ClientCategoryDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientCategories'
     }
   }
 ];
@@ -54,7 +54,7 @@ export const clientCategoryPopupRoute: Routes = [
     component: ClientCategoryPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientCategories'
     },
     outlet: 'popup'
   },
@@ -63,7 +63,7 @@ export const clientCategoryPopupRoute: Routes = [
     component: ClientCategoryPopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientCategories'
     },
     outlet: 'popup'
   },
@@ -72,7 +72,7 @@ export const clientCategoryPopupRoute: Routes = [
     component: ClientCategoryDeletePopupComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Client_categories'
+        pageTitle: 'ClientCategories'
     },
     outlet: 'popup'
   }

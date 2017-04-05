@@ -10,15 +10,15 @@ export class ClientCategoryService {
 
     constructor(private http: Http) { }
 
-    create(client_category: ClientCategory): Observable<ClientCategory> {
-        let copy: ClientCategory = Object.assign({}, client_category);
+    create(clientCategory: ClientCategory): Observable<ClientCategory> {
+        let copy: ClientCategory = Object.assign({}, clientCategory);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(client_category: ClientCategory): Observable<ClientCategory> {
-        let copy: ClientCategory = Object.assign({}, client_category);
+    update(clientCategory: ClientCategory): Observable<ClientCategory> {
+        let copy: ClientCategory = Object.assign({}, clientCategory);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -39,6 +39,8 @@ export class ClientCategoryService {
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
+
+
 
     private createRequestOption(req?: any): BaseRequestOptions {
         let options: BaseRequestOptions = new BaseRequestOptions();

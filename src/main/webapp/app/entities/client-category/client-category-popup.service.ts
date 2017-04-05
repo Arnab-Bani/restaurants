@@ -9,7 +9,7 @@ export class ClientCategoryPopupService {
     constructor (
         private modalService: NgbModal,
         private router: Router,
-        private client_categoryService: ClientCategoryService
+        private clientCategoryService: ClientCategoryService
     ) {}
 
     open (component: Component, id?: number | any): NgbModalRef {
@@ -19,17 +19,17 @@ export class ClientCategoryPopupService {
         this.isOpen = true;
 
         if (id) {
-            this.client_categoryService.find(id).subscribe(client_category => {
-                this.client_categoryModalRef(component, client_category);
+            this.clientCategoryService.find(id).subscribe(clientCategory => {
+                this.clientCategoryModalRef(component, clientCategory);
             });
         } else {
-            return this.client_categoryModalRef(component, new ClientCategory());
+            return this.clientCategoryModalRef(component, new ClientCategory());
         }
     }
 
-    client_categoryModalRef(component: Component, client_category: ClientCategory): NgbModalRef {
+    clientCategoryModalRef(component: Component, clientCategory: ClientCategory): NgbModalRef {
         let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.client_category = client_category;
+        modalRef.componentInstance.clientCategory = clientCategory;
         modalRef.result.then(result => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;

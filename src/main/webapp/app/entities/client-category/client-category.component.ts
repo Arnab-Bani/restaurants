@@ -16,7 +16,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 export class ClientCategoryComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
-    client_categories: ClientCategory[];
+    clientCategories: ClientCategory[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -31,7 +31,7 @@ currentAccount: any;
     reverse: any;
 
     constructor(
-        private client_categoryService: ClientCategoryService,
+        private clientCategoryService: ClientCategoryService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
         private principal: Principal,
@@ -51,7 +51,7 @@ currentAccount: any;
     }
 
     loadAll() {
-        this.client_categoryService.query({
+        this.clientCategoryService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
@@ -89,7 +89,7 @@ currentAccount: any;
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInClient_categories();
+        this.registerChangeInClientCategories();
     }
 
     ngOnDestroy() {
@@ -102,8 +102,8 @@ currentAccount: any;
 
 
 
-    registerChangeInClient_categories() {
-        this.eventSubscriber = this.eventManager.subscribe('client_categoryListModification', (response) => this.loadAll());
+    registerChangeInClientCategories() {
+        this.eventSubscriber = this.eventManager.subscribe('clientCategoryListModification', (response) => this.loadAll());
     }
 
     sort () {
@@ -119,7 +119,7 @@ currentAccount: any;
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
-        this.client_categories = data;
+        this.clientCategories = data;
     }
 
     private onError (error) {

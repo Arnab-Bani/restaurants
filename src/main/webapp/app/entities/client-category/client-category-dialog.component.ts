@@ -8,19 +8,23 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { ClientCategory } from './client-category.model';
 import { ClientCategoryPopupService } from './client-category-popup.service';
 import { ClientCategoryService } from './client-category.service';
+import { Client, ClientService } from '../client';
 @Component({
     selector: 'jhi-client-category-dialog',
     templateUrl: './client-category-dialog.component.html'
 })
 export class ClientCategoryDialogComponent implements OnInit {
 
-    client_category: ClientCategory;
+    clientCategory: ClientCategory;
     authorities: any[];
     isSaving: boolean;
+
+    clients: Client[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
-        private client_categoryService: ClientCategoryService,
+        private clientCategoryService: ClientCategoryService,
+        private clientService: ClientService,
         private eventManager: EventManager
     ) {
     }
@@ -28,6 +32,8 @@ export class ClientCategoryDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.clientService.query().subscribe(
+            (res: Response) => { this.clients = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
@@ -35,17 +41,17 @@ export class ClientCategoryDialogComponent implements OnInit {
 
     save () {
         this.isSaving = true;
-        if (this.client_category.id !== undefined) {
-            this.client_categoryService.update(this.client_category)
+        if (this.clientCategory.id !== undefined) {
+            this.clientCategoryService.update(this.clientCategory)
                 .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
-            this.client_categoryService.create(this.client_category)
+            this.clientCategoryService.create(this.clientCategory)
                 .subscribe((res: ClientCategory) => this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
     private onSaveSuccess (result: ClientCategory) {
-        this.eventManager.broadcast({ name: 'client_categoryListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'clientCategoryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -57,6 +63,10 @@ export class ClientCategoryDialogComponent implements OnInit {
 
     private onError (error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackClientById(index: number, item: Client) {
+        return item.id;
     }
 }
 
@@ -71,16 +81,16 @@ export class ClientCategoryPopupComponent implements OnInit, OnDestroy {
 
     constructor (
         private route: ActivatedRoute,
-        private client_categoryPopupService: ClientCategoryPopupService
+        private clientCategoryPopupService: ClientCategoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
             if ( params['id'] ) {
-                this.modalRef = this.client_categoryPopupService
+                this.modalRef = this.clientCategoryPopupService
                     .open(ClientCategoryDialogComponent, params['id']);
             } else {
-                this.modalRef = this.client_categoryPopupService
+                this.modalRef = this.clientCategoryPopupService
                     .open(ClientCategoryDialogComponent);
             }
 

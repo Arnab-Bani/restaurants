@@ -14,10 +14,10 @@ import { ClientCategoryService } from './client-category.service';
 })
 export class ClientCategoryDeleteDialogComponent {
 
-    client_category: ClientCategory;
+    clientCategory: ClientCategory;
 
     constructor(
-        private client_categoryService: ClientCategoryService,
+        private clientCategoryService: ClientCategoryService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
@@ -28,10 +28,10 @@ export class ClientCategoryDeleteDialogComponent {
     }
 
     confirmDelete (id: number) {
-        this.client_categoryService.delete(id).subscribe(response => {
+        this.clientCategoryService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
-                name: 'client_categoryListModification',
-                content: 'Deleted an client_category'
+                name: 'clientCategoryListModification',
+                content: 'Deleted an clientCategory'
             });
             this.activeModal.dismiss(true);
         });
@@ -49,12 +49,12 @@ export class ClientCategoryDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor (
         private route: ActivatedRoute,
-        private client_categoryPopupService: ClientCategoryPopupService
+        private clientCategoryPopupService: ClientCategoryPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            this.modalRef = this.client_categoryPopupService
+            this.modalRef = this.clientCategoryPopupService
                 .open(ClientCategoryDeleteDialogComponent, params['id']);
         });
     }
