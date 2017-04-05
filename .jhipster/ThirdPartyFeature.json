@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "featureCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "featureName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "billable",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170330155020",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "third_party_feature",
+    "pagination": "pagination"
+}

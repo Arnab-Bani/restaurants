@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "clientId",
+            "otherEntityName": "client",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "clientName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "clientFeatures"
+        },
+        {
+            "relationshipName": "thirdPartyFeatureId",
+            "otherEntityName": "thirdPartyFeature",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "featureName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "clientFeatures"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "featureUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170330161638",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "client_features",
+    "pagination": "pagination"
+}
