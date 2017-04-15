@@ -20,8 +20,8 @@
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="featureUrl"><span>Feature Url</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="clientId.clientName"><span>Client Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="thirdPartyFeatureId.featureName"><span>Third Party Feature Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="client.clientName"><span>Client</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="thirdPartyFeature.featureName"><span>Third Party Feature</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,13 +31,13 @@
                 <td>{{clientFeatures.featureUrl}}</td>
                 <td>{{clientFeatures.price}}</td>
                 <td>
-                    <div *ngIf="clientFeatures.clientId">
-                        <a [routerLink]="['../client', clientFeatures.clientId?.id ]" >{{clientFeatures.clientId?.clientName}}</a>
+                    <div *ngIf="clientFeatures.client">
+                        <a [routerLink]="['../client', clientFeatures.client?.id ]" >{{clientFeatures.client?.clientName}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="clientFeatures.thirdPartyFeatureId">
-                        <a [routerLink]="['../third-party-feature', clientFeatures.thirdPartyFeatureId?.id ]" >{{clientFeatures.thirdPartyFeatureId?.featureName}}</a>
+                    <div *ngIf="clientFeatures.thirdPartyFeature">
+                        <a [routerLink]="['../third-party-feature', clientFeatures.thirdPartyFeature?.id ]" >{{clientFeatures.thirdPartyFeature?.featureName}}</a>
                     </div>
                 </td>
                 <td class="text-xs-right">

@@ -28,17 +28,17 @@
         </div>
 
         <div class="form-group">
-            <label for="field_clientId">Client Id</label>
-            <select class="form-control" id="field_clientId" name="clientId" [(ngModel)]="clientFeatures.clientId">
+            <label for="field_client">Client</label>
+            <select class="form-control" id="field_client" name="client" [(ngModel)]="clientFeatures.client" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="clientOption.id === clientFeatures.clientId?.id ? clientFeatures.clientId : clientOption" *ngFor="let clientOption of clientids; trackBy: trackClientById">{{clientOption.clientName}}</option>
+                <option [ngValue]="clientOption.id === clientFeatures.client?.id ? clientFeatures.client : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientName}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="field_thirdPartyFeatureId">Third Party Feature Id</label>
-            <select class="form-control" id="field_thirdPartyFeatureId" name="thirdPartyFeatureId" [(ngModel)]="clientFeatures.thirdPartyFeatureId">
+            <label for="field_thirdPartyFeature">Third Party Feature</label>
+            <select class="form-control" id="field_thirdPartyFeature" name="thirdPartyFeature" [(ngModel)]="clientFeatures.thirdPartyFeature" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="thirdPartyFeatureOption.id === clientFeatures.thirdPartyFeatureId?.id ? clientFeatures.thirdPartyFeatureId : thirdPartyFeatureOption" *ngFor="let thirdPartyFeatureOption of thirdpartyfeatureids; trackBy: trackThirdPartyFeatureById">{{thirdPartyFeatureOption.featureName}}</option>
+                <option [ngValue]="thirdPartyFeatureOption.id === clientFeatures.thirdPartyFeature?.id ? clientFeatures.thirdPartyFeature : thirdPartyFeatureOption" *ngFor="let thirdPartyFeatureOption of thirdpartyfeatures; trackBy: trackThirdPartyFeatureById">{{thirdPartyFeatureOption.featureName}}</option>
             </select>
         </div>
     </div>

@@ -25,12 +25,10 @@ public class ClientFeatures implements Serializable {
     private Double price;
 
     @ManyToOne
-    @JoinColumn
-    private Client clientId;
+    private Client client;
 
     @ManyToOne
-    @JoinColumn
-    private ThirdPartyFeature thirdPartyFeatureId;
+    private ThirdPartyFeature thirdPartyFeature;
 
     public Long getId() {
         return id;
@@ -66,30 +64,30 @@ public class ClientFeatures implements Serializable {
         this.price = price;
     }
 
-    public Client getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public ClientFeatures clientId(Client client) {
-        this.clientId = client;
+    public ClientFeatures client(Client client) {
+        this.client = client;
         return this;
     }
 
-    public void setClientId(Client client) {
-        this.clientId = client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public ThirdPartyFeature getThirdPartyFeatureId() {
-        return thirdPartyFeatureId;
+    public ThirdPartyFeature getThirdPartyFeature() {
+        return thirdPartyFeature;
     }
 
-    public ClientFeatures thirdPartyFeatureId(ThirdPartyFeature thirdPartyFeature) {
-        this.thirdPartyFeatureId = thirdPartyFeature;
+    public ClientFeatures thirdPartyFeature(ThirdPartyFeature thirdPartyFeature) {
+        this.thirdPartyFeature = thirdPartyFeature;
         return this;
     }
 
-    public void setThirdPartyFeatureId(ThirdPartyFeature thirdPartyFeature) {
-        this.thirdPartyFeatureId = thirdPartyFeature;
+    public void setThirdPartyFeature(ThirdPartyFeature thirdPartyFeature) {
+        this.thirdPartyFeature = thirdPartyFeature;
     }
 
     @Override

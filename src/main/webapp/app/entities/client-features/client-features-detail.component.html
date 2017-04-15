@@ -12,16 +12,16 @@
         <dd>
             <span>{{clientFeatures.price}}</span>
         </dd>
-        <dt><span>Client Id</span></dt>
+        <dt><span>Client</span></dt>
         <dd>
-            <div *ngIf="clientFeatures.clientId">
-                <a [routerLink]="['client', clientFeatures.clientId?.id]">{{clientFeatures.clientId?.clientName}}</a>
+            <div *ngIf="clientFeatures.client">
+                <a [routerLink]="['client', clientFeatures.client?.id]">{{clientFeatures.client?.clientName}}</a>
             </div>
         </dd>
-        <dt><span>Third Party Feature Id</span></dt>
+        <dt><span>Third Party Feature</span></dt>
         <dd>
-            <div *ngIf="clientFeatures.thirdPartyFeatureId">
-                <a [routerLink]="['third-party-feature', clientFeatures.thirdPartyFeatureId?.id]">{{clientFeatures.thirdPartyFeatureId?.featureName}}</a>
+            <div *ngIf="clientFeatures.thirdPartyFeature">
+                <a [routerLink]="['third-party-feature', clientFeatures.thirdPartyFeature?.id]">{{clientFeatures.thirdPartyFeature?.featureName}}</a>
             </div>
         </dd>
     </dl>

@@ -2,7 +2,7 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "clientId",
+            "relationshipName": "client",
             "otherEntityName": "client",
             "relationshipType": "many-to-one",
             "otherEntityField": "clientName",
@@ -10,7 +10,7 @@
             "otherEntityRelationshipName": "clientFeatures"
         },
         {
-            "relationshipName": "thirdPartyFeatureId",
+            "relationshipName": "thirdPartyFeature",
             "otherEntityName": "thirdPartyFeature",
             "relationshipType": "many-to-one",
             "otherEntityField": "featureName",

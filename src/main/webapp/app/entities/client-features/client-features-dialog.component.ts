@@ -20,9 +20,9 @@ export class ClientFeaturesDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
-    clientids: Client[];
+    clients: Client[];
 
-    thirdpartyfeatureids: ThirdPartyFeature[];
+    thirdpartyfeatures: ThirdPartyFeature[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
@@ -36,24 +36,10 @@ export class ClientFeaturesDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.clientService.query({filter: 'clientfeatures-is-null'}).subscribe((res: Response) => {
-            if (!this.clientFeatures.clientId || !this.clientFeatures.clientId.id) {
-                this.clientids = res.json();
-            } else {
-                this.clientService.find(this.clientFeatures.clientId.id).subscribe((subRes: Response) => {
-                    this.clientids = [subRes].concat(res.json());
-                }, (subRes: Response) => this.onError(subRes.json()));
-            }
-        }, (res: Response) => this.onError(res.json()));
-        this.thirdPartyFeatureService.query({filter: 'clientfeatures-is-null'}).subscribe((res: Response) => {
-            if (!this.clientFeatures.thirdPartyFeatureId || !this.clientFeatures.thirdPartyFeatureId.id) {
-                this.thirdpartyfeatureids = res.json();
-            } else {
-                this.thirdPartyFeatureService.find(this.clientFeatures.thirdPartyFeatureId.id).subscribe((subRes: Response) => {
-                    this.thirdpartyfeatureids = [subRes].concat(res.json());
-                }, (subRes: Response) => this.onError(subRes.json()));
-            }
-        }, (res: Response) => this.onError(res.json()));
+        this.clientService.query().subscribe(
+            (res: Response) => { this.clients = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.thirdPartyFeatureService.query().subscribe(
+            (res: Response) => { this.thirdpartyfeatures = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
