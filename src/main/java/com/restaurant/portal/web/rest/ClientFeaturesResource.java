@@ -31,7 +31,7 @@ public class ClientFeaturesResource {
     private final Logger log = LoggerFactory.getLogger(ClientFeaturesResource.class);
 
     private static final String ENTITY_NAME = "clientFeatures";
-        
+
     private final ClientFeaturesService clientFeaturesService;
 
     public ClientFeaturesResource(ClientFeaturesService clientFeaturesService) {
@@ -109,6 +109,20 @@ public class ClientFeaturesResource {
         log.debug("REST request to get ClientFeatures : {}", id);
         ClientFeatures clientFeatures = clientFeaturesService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(clientFeatures));
+    }
+
+    /**
+     * GET  /client-features/clientId/:clientId : get the "clientId" clientFeatures.
+     *
+     * @param clientId the id of the client to retrieve clientFeatures
+     * @return the ResponseEntity with status 200 (OK) and with body the clientFeatures, or with status 404 (Not Found)
+     */
+    @GetMapping("/client-features/clientId/{clientId}")
+    @Timed
+    public ResponseEntity<List<ClientFeatures>> getClientFeaturesByClientId(@PathVariable Long clientId) {
+        log.debug("REST request to get ClientFeatures : {}", clientId);
+        List<ClientFeatures> clientFeaturesList = clientFeaturesService.findClientFeaturesByClientId(clientId);
+        return ResponseEntity.ok(clientFeaturesList);
     }
 
     /**

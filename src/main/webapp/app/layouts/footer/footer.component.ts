@@ -9,6 +9,9 @@ import { ClientFeaturesService } from '../../entities/client-features/client-fea
 })
 export class FooterComponent implements OnInit, OnDestroy {
     clientFeatures: ClientFeatures;
+    facebookUrl: string;
+    foursquareUrl: string;
+    yelpUrl: string;
     private subscription: any;
 
     constructor(
@@ -24,8 +27,17 @@ export class FooterComponent implements OnInit, OnDestroy {
 
     load (id) {
 
-        this.clientFeaturesService.find(id).subscribe(clientFeatures => {
+        this.clientFeaturesService.getClientFeaturesByClientId(id).subscribe(clientFeatures => {
             this.clientFeatures = clientFeatures;
+            for (let i in clientFeatures) {
+                if (clientFeatures[i]!.thirdPartyFeature!.featureCode === "FB") {
+                    this.facebookUrl = clientFeatures[i].featureUrl;
+                } else if (clientFeatures[i]!.thirdPartyFeature!.featureCode === "yelp") {
+                    this.yelpUrl = clientFeatures[i].featureUrl;
+                } else if (clientFeatures[i]!.thirdPartyFeature!.featureCode === "foursquare") {
+                    this.foursquareUrl = clientFeatures[i].featureUrl;
+                }
+            }
         });
     }
     previousState() {

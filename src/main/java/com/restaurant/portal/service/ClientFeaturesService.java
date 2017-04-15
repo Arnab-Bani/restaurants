@@ -20,7 +20,7 @@ public interface ClientFeaturesService {
 
     /**
      *  Get all the clientFeatures.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface ClientFeaturesService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<ClientFeatures> findClientFeaturesByClientId(Long clientId);
 }

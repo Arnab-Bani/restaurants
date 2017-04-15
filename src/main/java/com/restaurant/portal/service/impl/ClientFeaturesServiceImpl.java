@@ -20,7 +20,7 @@ import java.util.List;
 public class ClientFeaturesServiceImpl implements ClientFeaturesService{
 
     private final Logger log = LoggerFactory.getLogger(ClientFeaturesServiceImpl.class);
-    
+
     private final ClientFeaturesRepository clientFeaturesRepository;
 
     public ClientFeaturesServiceImpl(ClientFeaturesRepository clientFeaturesRepository) {
@@ -42,7 +42,7 @@ public class ClientFeaturesServiceImpl implements ClientFeaturesService{
 
     /**
      *  Get all the clientFeatures.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -77,5 +77,12 @@ public class ClientFeaturesServiceImpl implements ClientFeaturesService{
     public void delete(Long id) {
         log.debug("Request to delete ClientFeatures : {}", id);
         clientFeaturesRepository.delete(id);
+    }
+
+    @Override
+    public List<ClientFeatures> findClientFeaturesByClientId(Long clientId) {
+        log.debug("Request to get ClientFeatures By ClientId: {}", clientId);
+        List<ClientFeatures> list = clientFeaturesRepository.findClientFeaturesByClientId(clientId);
+        return list;
     }
 }

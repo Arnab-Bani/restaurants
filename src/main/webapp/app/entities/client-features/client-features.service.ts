@@ -30,6 +30,12 @@ export class ClientFeaturesService {
         });
     }
 
+    getClientFeaturesByClientId(id: number): Observable<ClientFeatures> {
+        return this.http.get(`${this.resourceUrl}/clientId/${id}`).map((res: Response) => {
+            return res.json();
+        });
+    }
+
     query(req?: any): Observable<Response> {
         let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
