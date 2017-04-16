@@ -18,12 +18,12 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_id"><span >Item Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_name"><span >Item Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_image"><span >Item Image</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_price"><span >Item Price</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="category_id"><span >Category Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_desc"><span >Item Desc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="item_id"><span>Item Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="item_name"><span>Item Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="item_image"><span>Item Image</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="item_price"><span>Item Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="item_desc"><span>Item Desc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="clientCategory.categoryName"><span>Client Category</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -39,8 +39,12 @@
                     <span *ngIf="clientMenu.item_image">{{clientMenu.item_imageContentType}}, {{byteSize(clientMenu.item_image)}}</span>
                 </td>
                 <td>{{clientMenu.item_price}}</td>
-                <td>{{clientMenu.category_id}}</td>
                 <td>{{clientMenu.item_desc}}</td>
+                <td>
+                    <div *ngIf="clientMenu.clientCategory">
+                        <a [routerLink]="['../client-category', clientMenu.clientCategory?.id ]" >{{clientMenu.clientCategory?.categoryName}}</a>
+                    </div>
+                </td>
                 <td class="text-xs-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

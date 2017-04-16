@@ -1,3 +1,5 @@
+
+
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -50,18 +52,19 @@
              />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_category_id">Category Id</label>
-            <input type="number" class="form-control" name="category_id" id="field_category_id"
-                [(ngModel)]="clientMenu.category_id"
-             />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_item_desc">Item Desc</label>
             <input type="text" class="form-control" name="item_desc" id="field_item_desc"
                 [(ngModel)]="clientMenu.item_desc"
              />
         </div>
 
+        <div class="form-group">
+            <label for="field_clientCategory">Client Category</label>
+            <select class="form-control" id="field_clientCategory" name="clientCategory" [(ngModel)]="clientMenu.clientCategory" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clientCategoryOption.id === clientMenu.clientCategory?.id ? clientMenu.clientCategory : clientCategoryOption" *ngFor="let clientCategoryOption of clientcategories; trackBy: trackClientCategoryById">{{clientCategoryOption.categoryName}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

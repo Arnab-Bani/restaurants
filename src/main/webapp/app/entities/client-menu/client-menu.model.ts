@@ -1,3 +1,4 @@
+import { ClientCategory } from '../client-category';
 export class ClientMenu {
     constructor(
         public id?: number,
@@ -5,7 +6,7 @@ export class ClientMenu {
         public item_name?: string,
         public item_image?: any,
         public item_price?: number,
-        public category_id?: number,
         public item_desc?: string,
+        public clientCategory?: ClientCategory,
     ) { }
 }

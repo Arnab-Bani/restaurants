@@ -1,6 +1,15 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "clientCategory",
+            "otherEntityName": "clientCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "categoryName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "clientMenu"
+        }
+    ],
     "fields": [
         {
             "fieldName": "item_id",
@@ -18,10 +27,6 @@
         {
             "fieldName": "item_price",
             "fieldType": "Double"
-        },
-        {
-            "fieldName": "category_id",
-            "fieldType": "Integer"
         },
         {
             "fieldName": "item_desc",

@@ -34,11 +34,11 @@ public class ClientMenu implements Serializable {
     @Column(name = "item_price")
     private Double item_price;
 
-    @Column(name = "category_id")
-    private Integer category_id;
-
     @Column(name = "item_desc")
     private String item_desc;
+
+    @ManyToOne
+    private ClientCategory clientCategory;
 
     public Long getId() {
         return id;
@@ -113,19 +113,6 @@ public class ClientMenu implements Serializable {
         this.item_price = item_price;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
-    }
-
-    public ClientMenu category_id(Integer category_id) {
-        this.category_id = category_id;
-        return this;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
-    }
-
     public String getItem_desc() {
         return item_desc;
     }
@@ -137,6 +124,19 @@ public class ClientMenu implements Serializable {
 
     public void setItem_desc(String item_desc) {
         this.item_desc = item_desc;
+    }
+
+    public ClientCategory getClientCategory() {
+        return clientCategory;
+    }
+
+    public ClientMenu clientCategory(ClientCategory clientCategory) {
+        this.clientCategory = clientCategory;
+        return this;
+    }
+
+    public void setClientCategory(ClientCategory clientCategory) {
+        this.clientCategory = clientCategory;
     }
 
     @Override
@@ -168,7 +168,6 @@ public class ClientMenu implements Serializable {
             ", item_image='" + item_image + "'" +
             ", item_imageContentType='" + item_imageContentType + "'" +
             ", item_price='" + item_price + "'" +
-            ", category_id='" + category_id + "'" +
             ", item_desc='" + item_desc + "'" +
             '}';
     }

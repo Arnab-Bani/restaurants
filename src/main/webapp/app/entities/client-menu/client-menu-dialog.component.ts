@@ -8,6 +8,7 @@ import { EventManager, AlertService, DataUtils } from 'ng-jhipster';
 import { ClientMenu } from './client-menu.model';
 import { ClientMenuPopupService } from './client-menu-popup.service';
 import { ClientMenuService } from './client-menu.service';
+import { ClientCategory, ClientCategoryService } from '../client-category';
 @Component({
     selector: 'jhi-client-menu-dialog',
     templateUrl: './client-menu-dialog.component.html'
@@ -17,11 +18,14 @@ export class ClientMenuDialogComponent implements OnInit {
     clientMenu: ClientMenu;
     authorities: any[];
     isSaving: boolean;
+
+    clientcategories: ClientCategory[];
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: DataUtils,
         private alertService: AlertService,
         private clientMenuService: ClientMenuService,
+        private clientCategoryService: ClientCategoryService,
         private eventManager: EventManager
     ) {
     }
@@ -29,6 +33,8 @@ export class ClientMenuDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.clientCategoryService.query().subscribe(
+            (res: Response) => { this.clientcategories = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     byteSize(field) {
         return this.dataUtils.byteSize(field);
@@ -78,6 +84,10 @@ export class ClientMenuDialogComponent implements OnInit {
 
     private onError (error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackClientCategoryById(index: number, item: ClientCategory) {
+        return item.id;
     }
 }
 

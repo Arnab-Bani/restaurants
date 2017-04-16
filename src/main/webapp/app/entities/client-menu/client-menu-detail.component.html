@@ -25,13 +25,15 @@
         <dd>
             <span>{{clientMenu.item_price}}</span>
         </dd>
-        <dt><span >Category Id</span></dt>
-        <dd>
-            <span>{{clientMenu.category_id}}</span>
-        </dd>
-        <dt><span >Item Desc</span></dt>
+        <dt><span>Item Desc</span></dt>
         <dd>
             <span>{{clientMenu.item_desc}}</span>
+        </dd>
+        <dt><span>Client Category</span></dt>
+        <dd>
+            <div *ngIf="clientMenu.clientCategory">
+                <a [routerLink]="['client-category', clientMenu.clientCategory?.id]">{{clientMenu.clientCategory?.categoryName}}</a>
+            </div>
         </dd>
     </dl>
 
