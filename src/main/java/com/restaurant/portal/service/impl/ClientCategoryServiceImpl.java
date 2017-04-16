@@ -20,7 +20,7 @@ import java.util.List;
 public class ClientCategoryServiceImpl implements ClientCategoryService{
 
     private final Logger log = LoggerFactory.getLogger(ClientCategoryServiceImpl.class);
-    
+
     private final ClientCategoryRepository clientCategoryRepository;
 
     public ClientCategoryServiceImpl(ClientCategoryRepository clientCategoryRepository) {
@@ -42,7 +42,7 @@ public class ClientCategoryServiceImpl implements ClientCategoryService{
 
     /**
      *  Get all the clientCategories.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -77,5 +77,10 @@ public class ClientCategoryServiceImpl implements ClientCategoryService{
     public void delete(Long id) {
         log.debug("Request to delete ClientCategory : {}", id);
         clientCategoryRepository.delete(id);
+    }
+
+    @Override
+    public List<ClientCategory> getClientCategoriesBasedOnClientId(Long clientId) {
+        return clientCategoryRepository.getClientCategoriesBasedOnClientId(clientId);
     }
 }

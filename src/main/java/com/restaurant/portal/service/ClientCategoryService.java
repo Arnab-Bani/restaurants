@@ -20,7 +20,7 @@ public interface ClientCategoryService {
 
     /**
      *  Get all the clientCategories.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface ClientCategoryService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<ClientCategory> getClientCategoriesBasedOnClientId(Long clientId);
 }

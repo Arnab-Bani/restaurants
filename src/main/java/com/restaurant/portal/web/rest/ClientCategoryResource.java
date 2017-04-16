@@ -31,7 +31,7 @@ public class ClientCategoryResource {
     private final Logger log = LoggerFactory.getLogger(ClientCategoryResource.class);
 
     private static final String ENTITY_NAME = "clientCategory";
-        
+
     private final ClientCategoryService clientCategoryService;
 
     public ClientCategoryResource(ClientCategoryService clientCategoryService) {
@@ -109,6 +109,14 @@ public class ClientCategoryResource {
         log.debug("REST request to get ClientCategory : {}", id);
         ClientCategory clientCategory = clientCategoryService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(clientCategory));
+    }
+
+    @GetMapping("/client-categories/client/{clientId}")
+    @Timed
+    public ResponseEntity<List<ClientCategory>> getClientCategoriesBasedOnClientId(@PathVariable Long clientId) {
+        log.debug("REST request to get ClientCategories Based on ClientId : {}", clientId);
+        List<ClientCategory> clientCategories = clientCategoryService.getClientCategoriesBasedOnClientId(clientId);
+        return ResponseEntity.ok(clientCategories);
     }
 
     /**
