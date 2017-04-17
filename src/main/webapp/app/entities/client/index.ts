@@ -6,3 +6,4 @@ export * from './client-delete-dialog.component';
 export * from './client-detail.component';
 export * from './client.component';
 export * from './client.route';
+export * from './riyaz.constants';

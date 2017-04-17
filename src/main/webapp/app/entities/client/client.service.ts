@@ -40,7 +40,11 @@ export class ClientService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-
+    findByWebsite(website: string): Observable<Client> {
+        return this.http.get(`${this.resourceUrl}/website/${website}`).map((res: Response) => {
+          return res.json();
+        });
+    }
 
     private createRequestOption(req?: any): BaseRequestOptions {
         let options: BaseRequestOptions = new BaseRequestOptions();

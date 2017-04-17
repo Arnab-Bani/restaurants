@@ -97,6 +97,16 @@ public class ClientCategoryResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/client-categories/clientId/{clientId}")
+    @Timed
+    public ResponseEntity<List<ClientCategory>> getAllClientCategories(@PathVariable Long clientId, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of ClientCategories");
+        Page<ClientCategory> page = clientCategoryService.getClientCategoriesByClientId(clientId,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/client-categories");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     /**
      * GET  /client-categories/:id : get the "id" clientCategory.
      *

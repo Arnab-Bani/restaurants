@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { ClientCategory } from './client-category.model';
+import { RiyazConstants } from '../client/riyaz.constants';
 @Injectable()
 export class ClientCategoryService {
 
     private resourceUrl = 'api/client-categories';
 
-    constructor(private http: Http) { }
+    constructor(@Inject(RiyazConstants) private riyazConstants,
+    private http: Http) { }
 
     create(clientCategory: ClientCategory): Observable<ClientCategory> {
         let copy: ClientCategory = Object.assign({}, clientCategory);
@@ -32,7 +34,7 @@ export class ClientCategoryService {
 
     query(req?: any): Observable<Response> {
         let options = this.createRequestOption(req);
-        return this.http.get(this.resourceUrl, options)
+        return this.http.get(this.resourceUrl+'/clientId/'+this.riyazConstants.clientId, options)
         ;
     }
 

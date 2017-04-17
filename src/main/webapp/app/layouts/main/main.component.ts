@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd, RoutesRecognized } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
+
 import { StateStorageService } from '../../shared';
+import { Client } from '../../entities/client/client.model';
+import { ClientService } from '../../entities/client/client.service';
+import { RiyazConstants } from '../../entities/client/riyaz.constants';
 
 @Component({
     selector: 'jhi-main',
@@ -11,6 +15,8 @@ import { StateStorageService } from '../../shared';
 export class JhiMainComponent implements OnInit {
 
     constructor(
+        private riyazConstants: RiyazConstants,
+        private clientService: ClientService,
         private titleService: Title,
         private router: Router,
         private $storageService: StateStorageService,
@@ -25,6 +31,11 @@ export class JhiMainComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('this should be first element : '+window.location.hostname);
+        this.clientService.findByWebsite(window.location.hostname).subscribe(client => {
+            this.riyazConstants.clientId = client.id;
+            console.log('Logged in clientId : '+this.riyazConstants.clientId);
+        });
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                  this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));

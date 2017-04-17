@@ -54,6 +54,13 @@ public class ClientCategoryServiceImpl implements ClientCategoryService{
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ClientCategory> getClientCategoriesByClientId(Long clientId, Pageable pageable) {
+        Page<ClientCategory> result = clientCategoryRepository.getClientCategoriesByClientId(clientId, pageable);
+        return result;
+    }
+
     /**
      *  Get one clientCategory by id.
      *

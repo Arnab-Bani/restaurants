@@ -31,7 +31,7 @@ public class ClientResource {
     private final Logger log = LoggerFactory.getLogger(ClientResource.class);
 
     private static final String ENTITY_NAME = "client";
-        
+
     private final ClientService clientService;
 
     public ClientResource(ClientService clientService) {
@@ -123,6 +123,14 @@ public class ClientResource {
         log.debug("REST request to delete Client : {}", id);
         clientService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/clients/website/{website}")
+    @Timed
+    public ResponseEntity<Client> getClientByWebsite(@PathVariable String website) {
+        log.debug("REST request to get Client : {}", website);
+        Client client = clientService.findByWebsite(website);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(client));
     }
 
 }

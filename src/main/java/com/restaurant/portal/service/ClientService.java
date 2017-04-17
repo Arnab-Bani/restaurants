@@ -20,7 +20,7 @@ public interface ClientService {
 
     /**
      *  Get all the clients.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface ClientService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    Client findByWebsite(String website);
 }

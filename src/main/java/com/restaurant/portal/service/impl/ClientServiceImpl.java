@@ -20,7 +20,7 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService{
 
     private final Logger log = LoggerFactory.getLogger(ClientServiceImpl.class);
-    
+
     private final ClientRepository clientRepository;
 
     public ClientServiceImpl(ClientRepository clientRepository) {
@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientService{
 
     /**
      *  Get all the clients.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -77,5 +77,10 @@ public class ClientServiceImpl implements ClientService{
     public void delete(Long id) {
         log.debug("Request to delete Client : {}", id);
         clientRepository.delete(id);
+    }
+
+    @Override
+    public Client findByWebsite(String website) {
+        return clientRepository.findByWebsite(website);
     }
 }

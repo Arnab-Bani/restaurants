@@ -3,6 +3,8 @@ package com.restaurant.portal.service;
 import com.restaurant.portal.domain.ClientCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,8 @@ public interface ClientCategoryService {
      *  @return the list of entities
      */
     Page<ClientCategory> findAll(Pageable pageable);
+
+    Page<ClientCategory> getClientCategoriesByClientId(Long clientId, Pageable pageable);
 
     /**
      *  Get the "id" clientCategory.
