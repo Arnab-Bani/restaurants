@@ -3,19 +3,19 @@
     <div class="collapse navbar-toggleable-md float-lg-left " id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="nav navbar-nav float-lg-right">
 
-            <li *ngSwitchCase="true" jhiHasAuthority="ROLE_USER" class="nav-item" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
+            <li class="nav-item" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="hidden-sm-down">Home</span>
                 </a>
             </li>
-            <li *ngSwitchCase="true" jhiHasAuthority="ROLE_USER" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="menu" (click)="collapseNavbar()">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span class="hidden-sm-down">Menu</span>
                 </a>
             </li>
-            <li *ngSwitchCase="true" jhiHasAuthority="ROLE_USER" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="location" (click)="collapseNavbar()">
                     <i class="fa fa-location-arrow" aria-hidden="true"></i>
                     <span class="hidden-sm-down">Location And Hours</span>
