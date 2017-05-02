@@ -15,7 +15,7 @@ import {
     clientRoute,
     clientPopupRoute,
     ClientResolvePagingParams,
-    RiyazConstants
+    RestuarantConstants
 } from './';
 
 let ENTITY_STATES = [
@@ -47,7 +47,7 @@ let ENTITY_STATES = [
         ClientService,
         ClientPopupService,
         ClientResolvePagingParams,
-        RiyazConstants
+        RestuarantConstants
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

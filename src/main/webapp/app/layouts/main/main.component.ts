@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { StateStorageService } from '../../shared';
 import { Client } from '../../entities/client/client.model';
 import { ClientService } from '../../entities/client/client.service';
-import { RiyazConstants } from '../../entities/client/riyaz.constants';
+import { RestuarantConstants } from '../../entities/client/restuarant.constants';
 
 @Component({
     selector: 'jhi-main',
@@ -15,7 +15,7 @@ import { RiyazConstants } from '../../entities/client/riyaz.constants';
 export class JhiMainComponent implements OnInit {
 
     constructor(
-        private riyazConstants: RiyazConstants,
+        private restuarantConstants: RestuarantConstants,
         private clientService: ClientService,
         private titleService: Title,
         private router: Router,
@@ -33,8 +33,8 @@ export class JhiMainComponent implements OnInit {
     ngOnInit() {
         console.log('this should be first element : '+window.location.hostname);
         this.clientService.findByWebsite(window.location.hostname).subscribe(client => {
-            this.riyazConstants.clientId = client.id;
-            console.log('Logged in clientId : '+this.riyazConstants.clientId);
+            this.restuarantConstants.clientId = client.id;
+            console.log('Logged in clientId : '+this.restuarantConstants.clientId);
         });
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
