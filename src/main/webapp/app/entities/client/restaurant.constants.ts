@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class RestuarantConstants {
+export class RestaurantConstants {
   public clientId?: number
   constructor() { }
 }

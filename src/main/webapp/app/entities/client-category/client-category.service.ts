@@ -3,13 +3,13 @@ import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/ht
 import { Observable } from 'rxjs/Rx';
 
 import { ClientCategory } from './client-category.model';
-import { RestuarantConstants } from '../client/restuarant.constants';
+import { RestaurantConstants } from '../client/restaurant.constants';
 @Injectable()
 export class ClientCategoryService {
 
     private resourceUrl = 'api/client-categories';
 
-    constructor(@Inject(RestuarantConstants) private restuarantConstants,
+    constructor(@Inject(RestaurantConstants) private restaurantConstants,
     private http: Http) { }
 
     create(clientCategory: ClientCategory): Observable<ClientCategory> {
@@ -34,7 +34,7 @@ export class ClientCategoryService {
 
     query(req?: any): Observable<Response> {
         let options = this.createRequestOption(req);
-        return this.http.get(this.resourceUrl+'/clientId/'+this.restuarantConstants.clientId, options)
+        return this.http.get(this.resourceUrl+'/clientId/'+this.restaurantConstants.clientId, options)
         ;
     }
 
